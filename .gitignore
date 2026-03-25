@@ -1,0 +1,3 @@
+.venv/
+dist/
+src/cvscan/cvz.egg-info

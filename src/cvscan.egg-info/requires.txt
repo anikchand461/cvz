@@ -1,6 +1,0 @@
-typer
-rich
-pdfplumber
-python-docx
-spacy
-scikit-learn

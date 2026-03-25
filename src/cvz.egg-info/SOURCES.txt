@@ -1,3 +1,4 @@
+README.md
 pyproject.toml
 src/cvscan/__init__.py
 src/cvscan/main.py
