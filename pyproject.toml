@@ -1,0 +1,34 @@
+[project]
+name = "cvz"
+version = "0.1.0"
+description = "ATS Resume Analyzer CLI"
+authors = [
+    { name="Anik Chand" }
+]
+readme = "README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+    "typer",
+    "rich",
+    "pdfplumber",
+    "python-docx",
+    "spacy",
+    "scikit-learn"
+]
+
+[project.scripts]
+cvz = "cvscan.main:app"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"cvscan.data" = ["*.json"]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"

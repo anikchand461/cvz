@@ -1,0 +1,201 @@
+{
+  "backend": {
+    "core": [
+      ["python", "java", "nodejs", "golang"],
+      ["django", "flask", "fastapi", "spring boot"],
+      ["api", "rest", "graphql"],
+      ["sql", "postgresql", "mysql"],
+      ["authentication", "jwt", "oauth"]
+    ],
+    "secondary": [
+      ["mongodb", "redis"],
+      ["docker", "kubernetes"],
+      ["nginx", "load balancing"],
+      ["microservices"],
+      ["kafka", "rabbitmq"],
+      ["system design"],
+      ["scalability"]
+    ]
+  },
+
+  "frontend": {
+    "core": [
+      ["html"],
+      ["css"],
+      ["javascript", "typescript"],
+      ["react", "angular", "vue"],
+      ["responsive", "ui", "ux"]
+    ],
+    "secondary": [
+      ["redux", "context api"],
+      ["tailwind", "bootstrap", "sass"],
+      ["nextjs"],
+      ["webpack", "vite"],
+      ["dom manipulation"]
+    ]
+  },
+
+  "full_stack": {
+    "core": [
+      ["frontend", "backend"],
+      ["react", "angular", "vue"],
+      ["nodejs", "express"],
+      ["mongodb", "sql"],
+      ["api"]
+    ],
+    "secondary": [
+      ["authentication"],
+      ["deployment"],
+      ["docker"],
+      ["system design"],
+      ["web application"]
+    ]
+  },
+
+  "data_scientist": {
+    "core": [
+      ["python", "r"],
+      ["pandas", "numpy"],
+      ["machine learning"],
+      ["data analysis"],
+      ["statistics"]
+    ],
+    "secondary": [
+      ["tensorflow", "pytorch"],
+      ["scikit learn"],
+      ["feature engineering"],
+      ["data visualization"],
+      ["matplotlib", "seaborn"],
+      ["nlp", "computer vision"]
+    ]
+  },
+
+  "data_analyst": {
+    "core": [
+      ["excel"],
+      ["sql"],
+      ["data analysis"],
+      ["data visualization"],
+      ["reporting"]
+    ],
+    "secondary": [
+      ["power bi", "tableau"],
+      ["python", "pandas"],
+      ["dashboard"],
+      ["eda"],
+      ["business intelligence"]
+    ]
+  },
+
+  "machine_learning": {
+    "core": [
+      ["machine learning"],
+      ["deep learning"],
+      ["model training"],
+      ["feature engineering"]
+    ],
+    "secondary": [
+      ["tensorflow", "pytorch", "keras"],
+      ["nlp"],
+      ["computer vision", "cv"],
+      ["transformers"],
+      ["mlops"],
+      ["hyperparameter tuning"],
+      ["unsupervised learning"],
+      ["reinforcement learning"]
+    ]
+  },
+
+  "ai_engineer": {
+    "core": [
+      ["artificial intelligence", "ai"],
+      ["machine learning"],
+      ["deep learning"],
+      ["neural networks"]
+    ],
+    "secondary": [
+      ["nlp"],
+      ["computer vision"],
+      ["transformers"],
+      ["llm", "gpt"],
+      ["tensorflow", "pytorch"],
+      ["mlops"]
+    ]
+  },
+
+  "devops": {
+    "core": [
+      ["docker"],
+      ["kubernetes"],
+      ["ci cd"],
+      ["aws", "azure", "gcp"],
+      ["linux"]
+    ],
+    "secondary": [
+      ["terraform"],
+      ["jenkins", "github actions"],
+      ["monitoring", "grafana", "prometheus"],
+      ["nginx"],
+      ["load balancing"],
+      ["infrastructure as code"]
+    ]
+  },
+
+  "cloud_engineer": {
+    "core": [
+      ["aws", "azure", "gcp"],
+      ["cloud architecture"],
+      ["docker"],
+      ["kubernetes"]
+    ],
+    "secondary": [
+      ["terraform"],
+      ["networking"],
+      ["security groups"],
+      ["deployment"],
+      ["scalability"]
+    ]
+  },
+
+  "software_engineer": {
+    "core": [["data structures"], ["algorithms"], ["oop"], ["system design"]],
+    "secondary": [
+      ["python", "java", "c++"],
+      ["git"],
+      ["problem solving"],
+      ["software development"]
+    ]
+  },
+
+  "android": {
+    "core": [
+      ["android"],
+      ["kotlin", "java"],
+      ["android studio"],
+      ["mobile development"]
+    ],
+    "secondary": [["firebase"], ["rest api"], ["ui"], ["mvvm", "mvc"]]
+  },
+
+  "ios": {
+    "core": [["ios"], ["swift"], ["xcode"], ["mobile development"]],
+    "secondary": [["uikit", "swiftui"], ["api integration"], ["mvvm"]]
+  },
+
+  "cybersecurity": {
+    "core": [
+      ["cybersecurity"],
+      ["network security"],
+      ["penetration testing"],
+      ["ethical hacking"]
+    ],
+    "secondary": [
+      ["cryptography"],
+      ["firewalls"],
+      ["kali linux"],
+      ["metasploit"],
+      ["owasp"],
+      ["threat analysis"]
+    ]
+  }
+}

@@ -1,0 +1,2 @@
+[console_scripts]
+cvx = cvscan.main:app
