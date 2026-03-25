@@ -9,7 +9,6 @@ from cvscan.utils.loader import load_resume, load_keywords, load_all_roles
 from cvscan.utils.cleaner import clean_text
 
 from cvscan.engines.keyword_engine import keyword_score
-from cvscan.engines.spacy_engine import spacy_score
 from cvscan.engines.structure_engine import structure_score
 
 app = typer.Typer(help="🚀 CVScan - ATS Resume Analyzer CLI")
@@ -88,6 +87,7 @@ def analyze(
     role: str = typer.Option(None, "--role", "-r"),
     jd: str = typer.Option(None, "--jd")
 ):
+    from cvscan.engines.spacy_engine import spacy_score
     console.print("\n🔍 Analyzing Resume...\n")
 
     for _ in track(range(3)):

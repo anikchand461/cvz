@@ -1,6 +1,6 @@
 [project]
 name = "cvz"
-version = "0.1.1"
+version = "0.1.2"
 description = "ATS Resume Analyzer CLI"
 authors = [
     { name="Anik Chand" }

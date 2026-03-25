@@ -1,0 +1,2 @@
+[console_scripts]
+cvz = cvscan.main:app
