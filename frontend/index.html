@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500;600&family=Cabinet+Grotesk:wght@400;500;700;800;900&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -20,344 +20,438 @@
       }
 
       :root {
-        --bg: #0a0a0a;
-        --surface: #111111;
-        --border: #1e1e1e;
-        --border-bright: #2e2e2e;
-        --cyan: #00e5cc;
-        --cyan-dim: #00e5cc22;
-        --yellow: #f5c542;
-        --red: #ff4f4f;
-        --green: #3ddc84;
-        --text: #e8e8e8;
-        --text-dim: #666;
-        --text-mid: #999;
-        --font-display: "Syne", sans-serif;
-        --font-mono: "DM Mono", monospace;
+        --bg: #06080f;
+        --bg2: #0c0f1e;
+        --surface: #0f1320;
+        --card: #111827;
+        --border: rgba(255, 255, 255, 0.07);
+        --border2: rgba(255, 255, 255, 0.12);
+        --emerald: #00f5a0;
+        --violet: #a855f7;
+        --sky: #38bdf8;
+        --amber: #fbbf24;
+        --rose: #fb7185;
+        --grad: linear-gradient(135deg, #00f5a0, #38bdf8, #a855f7);
+        --grad2: linear-gradient(135deg, #00f5a0 0%, #38bdf8 50%, #a855f7 100%);
+        --grad-text: linear-gradient(90deg, #00f5a0, #38bdf8 50%, #a855f7);
+        --text: #f0f4ff;
+        --text-mid: #8892aa;
+        --text-dim: #454d66;
+        --ff-display: "Cabinet Grotesk", sans-serif;
+        --ff-serif: "Instrument Serif", serif;
+        --ff-mono: "Geist Mono", monospace;
+        --radius: 12px;
       }
 
       html {
         scroll-behavior: smooth;
       }
-
       body {
         background: var(--bg);
         color: var(--text);
-        font-family: var(--font-mono);
+        font-family: var(--ff-mono);
         overflow-x: hidden;
-        cursor: none;
+        line-height: 1.6;
       }
 
-      /* Custom cursor */
-      .cursor {
-        position: fixed;
-        width: 8px;
-        height: 8px;
-        background: var(--cyan);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transition: transform 0.1s ease;
-        mix-blend-mode: difference;
-      }
-      .cursor-ring {
-        position: fixed;
-        width: 32px;
-        height: 32px;
-        border: 1px solid var(--cyan);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9998;
-        transition:
-          transform 0.15s ease,
-          width 0.2s,
-          height 0.2s;
-        transform: translate(-50%, -50%);
-        opacity: 0.5;
-      }
-
-      /* Noise overlay */
-      body::before {
-        content: "";
+      /* mesh bg */
+      .mesh-bg {
         position: fixed;
         inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-        pointer-events: none;
-        z-index: 1000;
-        opacity: 0.4;
-      }
-
-      /* Grid background */
-      body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image:
-          linear-gradient(var(--border) 1px, transparent 1px),
-          linear-gradient(90deg, var(--border) 1px, transparent 1px);
-        background-size: 48px 48px;
-        pointer-events: none;
         z-index: 0;
-        opacity: 0.4;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .mesh-bg::before {
+        content: "";
+        position: absolute;
+        width: 900px;
+        height: 900px;
+        top: -300px;
+        left: -200px;
+        background: radial-gradient(
+          circle,
+          rgba(0, 245, 160, 0.12) 0%,
+          transparent 65%
+        );
+        border-radius: 50%;
+        animation: drift1 18s ease-in-out infinite alternate;
+      }
+      .mesh-bg::after {
+        content: "";
+        position: absolute;
+        width: 700px;
+        height: 700px;
+        top: 10%;
+        right: -200px;
+        background: radial-gradient(
+          circle,
+          rgba(168, 85, 247, 0.13) 0%,
+          transparent 65%
+        );
+        border-radius: 50%;
+        animation: drift2 22s ease-in-out infinite alternate;
+      }
+      .mesh-orb3 {
+        position: absolute;
+        width: 600px;
+        height: 600px;
+        bottom: 5%;
+        left: 30%;
+        background: radial-gradient(
+          circle,
+          rgba(56, 189, 248, 0.1) 0%,
+          transparent 65%
+        );
+        border-radius: 50%;
+        animation: drift3 26s ease-in-out infinite alternate;
+      }
+      @keyframes drift1 {
+        from {
+          transform: translate(0, 0) scale(1);
+        }
+        to {
+          transform: translate(60px, 80px) scale(1.15);
+        }
+      }
+      @keyframes drift2 {
+        from {
+          transform: translate(0, 0) scale(1);
+        }
+        to {
+          transform: translate(-80px, 60px) scale(1.1);
+        }
+      }
+      @keyframes drift3 {
+        from {
+          transform: translate(0, 0);
+        }
+        to {
+          transform: translate(40px, -60px);
+        }
       }
 
-      /* ─── NAV ─── */
+      .grid-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.025) 1px,
+            transparent 1px
+          );
+        background-size: 60px 60px;
+      }
+      .noise {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      /* NAV */
       nav {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
-        z-index: 100;
+        z-index: 200;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 20px 48px;
+        padding: 0 48px;
+        height: 64px;
         border-bottom: 1px solid var(--border);
-        background: rgba(10, 10, 10, 0.85);
-        backdrop-filter: blur(12px);
+        background: rgba(6, 8, 15, 0.75);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
       }
-
       .nav-logo {
-        font-family: var(--font-display);
-        font-weight: 800;
-        font-size: 1.3rem;
-        color: var(--cyan);
-        letter-spacing: -0.02em;
-      }
-      .nav-logo span {
-        color: var(--text-dim);
-        font-weight: 400;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 32px;
-        list-style: none;
-        font-size: 0.75rem;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--text-mid);
-      }
-      .nav-links a {
-        color: inherit;
+        font-family: var(--ff-display);
+        font-weight: 900;
+        font-size: 1.4rem;
+        letter-spacing: -0.04em;
         text-decoration: none;
-        transition: color 0.2s;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
-      .nav-links a:hover {
-        color: var(--cyan);
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
-
-      .nav-badge {
-        font-size: 0.7rem;
-        border: 1px solid var(--border-bright);
-        padding: 4px 12px;
-        border-radius: 2px;
+      .nav-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 7px 14px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
         color: var(--text-mid);
-        letter-spacing: 0.06em;
+        text-decoration: none;
+        font-size: 0.72rem;
+        letter-spacing: 0.04em;
+        font-family: var(--ff-mono);
+        background: rgba(255, 255, 255, 0.03);
+        transition: all 0.2s;
+      }
+      .nav-link:hover {
+        border-color: var(--border2);
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.07);
+      }
+      .nav-links-desktop {
+        display: flex;
+        gap: 8px;
+      }
+      .nav-version {
+        font-size: 0.65rem;
+        color: var(--text-dim);
+        border: 1px solid var(--border);
+        padding: 4px 10px;
+        border-radius: 20px;
+        margin-left: 8px;
+        display: none;
       }
 
-      /* ─── HERO ─── */
+      /* HERO */
       .hero {
         position: relative;
         z-index: 1;
         min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 120px 48px 80px;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .hero-eyebrow {
-        font-size: 0.7rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--cyan);
-        margin-bottom: 24px;
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         align-items: center;
-        gap: 12px;
-        opacity: 0;
-        animation: fadeUp 0.6s ease 0.2s forwards;
+        gap: 60px;
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 120px 48px 80px;
       }
-      .hero-eyebrow::before {
-        content: "";
-        display: block;
-        width: 32px;
-        height: 1px;
-        background: var(--cyan);
-      }
-
-      .hero-title {
-        font-family: var(--font-display);
-        font-weight: 800;
-        font-size: clamp(3.5rem, 9vw, 7.5rem);
-        line-height: 0.95;
-        letter-spacing: -0.04em;
-        margin-bottom: 32px;
-        opacity: 0;
-        animation: fadeUp 0.7s ease 0.35s forwards;
-      }
-      .hero-title .accent {
-        color: var(--cyan);
-      }
-      .hero-title .dim {
-        color: var(--text-dim);
-      }
-
-      .hero-sub {
-        font-size: 1rem;
-        color: var(--text-mid);
-        max-width: 480px;
-        line-height: 1.7;
-        margin-bottom: 48px;
-        opacity: 0;
-        animation: fadeUp 0.7s ease 0.5s forwards;
-      }
-
-      .hero-actions {
-        display: flex;
-        gap: 16px;
-        flex-wrap: wrap;
-        opacity: 0;
-        animation: fadeUp 0.7s ease 0.65s forwards;
-      }
-
-      .btn {
-        font-family: var(--font-mono);
-        font-size: 0.8rem;
-        letter-spacing: 0.05em;
-        padding: 12px 24px;
-        border-radius: 2px;
-        cursor: none;
-        transition: all 0.2s;
-        text-decoration: none;
+      .hero-pill {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-      }
-      .btn-primary {
-        background: var(--cyan);
-        color: #000;
-        border: 1px solid var(--cyan);
-        font-weight: 500;
-      }
-      .btn-primary:hover {
-        background: transparent;
-        color: var(--cyan);
-      }
-      .btn-ghost {
-        background: transparent;
-        color: var(--text-mid);
-        border: 1px solid var(--border-bright);
-      }
-      .btn-ghost:hover {
-        border-color: var(--cyan);
-        color: var(--cyan);
-      }
-
-      /* ─── TERMINAL MOCKUP ─── */
-      .terminal-wrap {
-        position: absolute;
-        right: 48px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 480px;
+        background: rgba(0, 245, 160, 0.08);
+        border: 1px solid rgba(0, 245, 160, 0.2);
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        color: var(--emerald);
+        letter-spacing: 0.08em;
+        margin-bottom: 28px;
         opacity: 0;
-        animation: fadeLeft 0.8s ease 0.8s forwards;
+        animation: fadeUp 0.6s ease 0.1s forwards;
       }
-
-      @media (max-width: 900px) {
-        .terminal-wrap {
-          display: none;
+      .pill-dot {
+        width: 6px;
+        height: 6px;
+        background: var(--emerald);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(0.8);
         }
       }
 
-      .terminal {
-        background: var(--surface);
-        border: 1px solid var(--border-bright);
-        border-radius: 6px;
-        overflow: hidden;
-        box-shadow:
-          0 32px 80px rgba(0, 0, 0, 0.6),
-          0 0 0 1px rgba(255, 255, 255, 0.03);
+      .hero-title {
+        font-family: var(--ff-display);
+        font-weight: 900;
+        font-size: clamp(2.8rem, 5.5vw, 5.2rem);
+        line-height: 1;
+        letter-spacing: -0.04em;
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: fadeUp 0.7s ease 0.25s forwards;
       }
-      .terminal-bar {
-        background: #1a1a1a;
-        padding: 12px 16px;
+      .grad {
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .serif {
+        font-family: var(--ff-serif);
+        font-style: italic;
+        font-weight: 400;
+        color: var(--text-mid);
+        background: none;
+        -webkit-background-clip: unset;
+        background-clip: unset;
+        -webkit-text-fill-color: var(--text-mid);
+      }
+
+      .hero-desc {
+        font-size: 0.88rem;
+        color: var(--text-mid);
+        line-height: 1.75;
+        max-width: 460px;
+        margin-bottom: 40px;
+        opacity: 0;
+        animation: fadeUp 0.7s ease 0.4s forwards;
+      }
+      .hero-actions {
         display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: fadeUp 0.7s ease 0.55s forwards;
+      }
+
+      .btn {
+        display: inline-flex;
         align-items: center;
         gap: 8px;
+        padding: 12px 22px;
+        border-radius: 10px;
+        font-family: var(--ff-mono);
+        font-size: 0.8rem;
+        font-weight: 500;
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: all 0.22s;
+      }
+      .btn-grad {
+        background: var(--grad2);
+        color: #000;
+        font-weight: 600;
+        box-shadow: 0 0 24px rgba(0, 245, 160, 0.25);
+      }
+      .btn-grad:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 32px rgba(0, 245, 160, 0.35);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--text-mid);
+        border: 1px solid var(--border2);
+      }
+      .btn-outline:hover {
+        color: var(--text);
+        border-color: rgba(255, 255, 255, 0.25);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      /* Terminal */
+      .hero-terminal {
+        position: relative;
+        opacity: 0;
+        animation: fadeLeft 0.9s ease 0.7s forwards;
+      }
+      .terminal-glow {
+        position: absolute;
+        inset: -30px;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          rgba(0, 245, 160, 0.08) 0%,
+          transparent 70%
+        );
+        pointer-events: none;
+      }
+      .terminal {
+        background: var(--surface);
+        border: 1px solid var(--border2);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow:
+          0 0 0 1px rgba(255, 255, 255, 0.04),
+          0 40px 100px rgba(0, 0, 0, 0.6),
+          0 0 60px rgba(0, 245, 160, 0.05);
+      }
+      .terminal-bar {
+        background: rgba(255, 255, 255, 0.03);
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        gap: 7px;
         border-bottom: 1px solid var(--border);
       }
       .dot {
-        width: 10px;
-        height: 10px;
+        width: 11px;
+        height: 11px;
         border-radius: 50%;
       }
-      .dot-red {
+      .dot-r {
         background: #ff5f57;
       }
-      .dot-yellow {
+      .dot-y {
         background: #febc2e;
       }
-      .dot-green {
+      .dot-g {
         background: #28c840;
       }
-      .terminal-title {
-        margin-left: auto;
-        margin-right: auto;
-        font-size: 0.7rem;
+      .t-bar-title {
+        margin: 0 auto;
+        font-size: 0.68rem;
         color: var(--text-dim);
-        letter-spacing: 0.05em;
+        letter-spacing: 0.06em;
       }
       .terminal-body {
-        padding: 20px;
+        padding: 22px 24px;
         font-size: 0.78rem;
-        line-height: 1.8;
+        line-height: 2;
+        font-family: var(--ff-mono);
       }
-      .t-prompt {
-        color: var(--cyan);
+      .t-p {
+        color: var(--emerald);
       }
-      .t-cmd {
+      .t-c {
         color: var(--text);
       }
-      .t-dim {
+      .t-d {
         color: var(--text-dim);
       }
-      .t-label {
+      .t-m {
         color: var(--text-mid);
       }
-      .t-green {
-        color: var(--green);
+      .t-g {
+        color: #4ade80;
       }
-      .t-yellow {
-        color: var(--yellow);
+      .t-y {
+        color: var(--amber);
       }
-      .t-red {
-        color: var(--red);
+      .t-r {
+        color: var(--rose);
       }
-      .t-cyan {
-        color: var(--cyan);
+      .t-s {
+        color: var(--sky);
       }
-      .t-border {
+      .t-e {
+        color: var(--emerald);
+      }
+      .t-rule {
+        border: none;
         border-top: 1px solid var(--border);
-        margin: 8px 0;
+        margin: 6px 0;
       }
-
-      .bar-track {
-        display: inline-block;
+      .t-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .t-bar {
         font-size: 0.72rem;
         letter-spacing: 0;
       }
-
-      /* Blinking cursor */
       .blink {
         display: inline-block;
-        width: 7px;
-        height: 13px;
-        background: var(--cyan);
+        width: 8px;
+        height: 14px;
+        background: var(--emerald);
         vertical-align: middle;
         animation: blink 1s step-end infinite;
       }
@@ -371,342 +465,475 @@
         }
       }
 
-      /* ─── STATS ROW ─── */
-      .stats {
+      /* STATS */
+      .stats-strip {
         position: relative;
         z-index: 1;
         border-top: 1px solid var(--border);
         border-bottom: 1px solid var(--border);
+      }
+      .stats-inner {
+        max-width: 1280px;
+        margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        max-width: 1200px;
-        margin: 0 auto;
       }
       .stat {
         padding: 40px 48px;
         border-right: 1px solid var(--border);
-        opacity: 0;
-        animation: fadeUp 0.6s ease forwards;
+        transition: background 0.3s;
       }
       .stat:last-child {
         border-right: none;
       }
-      .stat:nth-child(1) {
-        animation-delay: 0.1s;
-      }
-      .stat:nth-child(2) {
-        animation-delay: 0.2s;
-      }
-      .stat:nth-child(3) {
-        animation-delay: 0.3s;
-      }
-      .stat:nth-child(4) {
-        animation-delay: 0.4s;
+      .stat:hover {
+        background: rgba(255, 255, 255, 0.02);
       }
       .stat-num {
-        font-family: var(--font-display);
-        font-weight: 800;
-        font-size: 2.5rem;
-        color: var(--cyan);
+        font-family: var(--ff-display);
+        font-weight: 900;
+        font-size: 2.8rem;
         line-height: 1;
         margin-bottom: 8px;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
       .stat-label {
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         color: var(--text-dim);
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
       }
 
-      /* ─── COMMANDS SECTION ─── */
+      /* SECTIONS */
       .section {
         position: relative;
         z-index: 1;
-        max-width: 1200px;
+        max-width: 1280px;
         margin: 0 auto;
         padding: 100px 48px;
       }
-
-      .section-label {
-        font-size: 0.7rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--cyan);
-        margin-bottom: 16px;
-        display: flex;
+      .s-eyebrow {
+        display: inline-flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--emerald);
+        margin-bottom: 20px;
       }
-      .section-label::before {
+      .s-eyebrow::before {
         content: "";
-        width: 24px;
+        width: 28px;
         height: 1px;
-        background: var(--cyan);
+        background: var(--emerald);
       }
-
-      .section-title {
-        font-family: var(--font-display);
-        font-weight: 800;
-        font-size: clamp(2rem, 4vw, 3.2rem);
+      .s-title {
+        font-family: var(--ff-display);
+        font-weight: 900;
+        font-size: clamp(2rem, 4vw, 3.5rem);
         letter-spacing: -0.03em;
-        line-height: 1.1;
+        line-height: 1.05;
+        margin-bottom: 16px;
+      }
+      .s-sub {
+        font-size: 0.85rem;
+        color: var(--text-mid);
+        max-width: 520px;
+        line-height: 1.75;
         margin-bottom: 60px;
       }
 
-      .commands-grid {
+      /* COMMANDS */
+      .cmd-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 1px;
         background: var(--border);
         border: 1px solid var(--border);
-      }
-
-      .cmd-card {
-        background: var(--bg);
-        padding: 32px;
-        transition: background 0.2s;
-        position: relative;
+        border-radius: var(--radius);
         overflow: hidden;
       }
-      .cmd-card::after {
+      .cmd-card {
+        background: var(--card);
+        padding: 28px 30px;
+        position: relative;
+        overflow: hidden;
+        transition: background 0.25s;
+      }
+      .cmd-card::before {
         content: "";
         position: absolute;
-        inset: 0;
-        background: var(--cyan-dim);
-        opacity: 0;
-        transition: opacity 0.2s;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--grad2);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s ease;
       }
       .cmd-card:hover {
         background: var(--surface);
       }
-      .cmd-card:hover::after {
-        opacity: 1;
+      .cmd-card:hover::before {
+        transform: scaleX(1);
       }
-
+      .cmd-tag {
+        display: inline-block;
+        font-size: 0.65rem;
+        padding: 3px 8px;
+        border-radius: 4px;
+        background: rgba(0, 245, 160, 0.08);
+        border: 1px solid rgba(0, 245, 160, 0.15);
+        color: var(--emerald);
+        letter-spacing: 0.06em;
+        margin-bottom: 14px;
+      }
       .cmd-name {
-        font-size: 0.82rem;
-        color: var(--cyan);
+        font-size: 0.92rem;
+        color: var(--text);
         margin-bottom: 10px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        font-weight: 500;
       }
-      .cmd-name::before {
-        content: "$";
-        color: var(--text-dim);
+      .cmd-name code {
+        background: rgba(56, 189, 248, 0.1);
+        color: var(--sky);
+        padding: 2px 7px;
+        border-radius: 4px;
+        font-size: 0.85rem;
       }
-
       .cmd-desc {
-        font-size: 0.78rem;
+        font-size: 0.76rem;
         color: var(--text-mid);
-        line-height: 1.6;
+        line-height: 1.65;
         margin-bottom: 16px;
       }
-
-      .cmd-example {
-        font-size: 0.7rem;
+      .cmd-ex {
+        font-size: 0.68rem;
         color: var(--text-dim);
-        background: var(--border);
+        background: rgba(0, 0, 0, 0.3);
         padding: 8px 12px;
-        border-radius: 2px;
-        border-left: 2px solid var(--border-bright);
+        border-radius: 6px;
+        border-left: 2px solid rgba(0, 245, 160, 0.25);
+        overflow-x: auto;
+        white-space: nowrap;
       }
 
-      /* ─── SCORING SECTION ─── */
-      .scoring-layout {
+      /* SCORING */
+      .scoring-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 80px;
-        align-items: center;
+        align-items: start;
       }
-      @media (max-width: 768px) {
-        .scoring-layout {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      .scoring-text p {
-        font-size: 0.85rem;
-        color: var(--text-mid);
-        line-height: 1.8;
-        margin-bottom: 32px;
-      }
-
-      .score-breakdown {
+      .score-meters {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 24px;
       }
-
-      .score-row {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+      .score-meter {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 22px 24px;
+        transition:
+          border-color 0.3s,
+          transform 0.3s;
       }
-      .score-row-header {
+      .score-meter:hover {
+        border-color: var(--border2);
+        transform: translateX(4px);
+      }
+      .sm-header {
         display: flex;
         justify-content: space-between;
-        font-size: 0.75rem;
+        align-items: center;
+        margin-bottom: 14px;
       }
-      .score-row-label {
-        color: var(--text-mid);
+      .sm-label {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--text);
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
-      .score-row-weight {
-        color: var(--cyan);
+      .sm-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
       }
-
-      .score-bar-bg {
-        height: 4px;
-        background: var(--border-bright);
-        border-radius: 2px;
+      .sm-weight {
+        font-size: 1.4rem;
+        font-family: var(--ff-display);
+        font-weight: 900;
+      }
+      .sm-track {
+        height: 6px;
+        background: var(--border);
+        border-radius: 3px;
         overflow: hidden;
+        margin-bottom: 10px;
       }
-      .score-bar-fill {
+      .sm-fill {
         height: 100%;
-        border-radius: 2px;
-        animation: growBar 1.2s ease forwards;
-        transform-origin: left;
+        border-radius: 3px;
         transform: scaleX(0);
+        transform-origin: left;
+        animation: growBar 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
       }
       @keyframes growBar {
         to {
           transform: scaleX(1);
         }
       }
-
-      .threshold-list {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 8px;
+      .sm-desc {
+        font-size: 0.7rem;
+        color: var(--text-dim);
+        line-height: 1.55;
       }
-      .threshold {
+
+      .thresholds {
+        margin-top: 0;
+      }
+      .thresh-title {
+        font-size: 0.68rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        margin-bottom: 16px;
+      }
+      .thresh-row {
         display: flex;
         align-items: center;
         gap: 12px;
-        font-size: 0.78rem;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.8rem;
       }
-      .threshold-dot {
-        width: 8px;
-        height: 8px;
+      .thresh-row:last-child {
+        border-bottom: none;
+      }
+      .thresh-dot {
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
         flex-shrink: 0;
       }
-      .threshold-score {
-        color: var(--text-dim);
-        margin-left: auto;
+      .thresh-label {
+        flex: 1;
+        color: var(--text-mid);
+      }
+      .thresh-val {
+        font-family: var(--ff-display);
+        font-weight: 700;
+        font-size: 0.85rem;
       }
 
-      /* ─── INSTALL ─── */
-      .install-box {
-        background: var(--surface);
-        border: 1px solid var(--border-bright);
-        border-radius: 4px;
-        overflow: hidden;
-        max-width: 600px;
+      /* INSTALL */
+      .install-wrapper {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 60px;
+        align-items: center;
       }
-      .install-box-header {
-        padding: 10px 20px;
+      .install-card {
+        background: var(--surface);
+        border: 1px solid var(--border2);
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: 0 0 60px rgba(0, 245, 160, 0.04);
+      }
+      .install-header {
+        padding: 14px 20px;
         border-bottom: 1px solid var(--border);
-        font-size: 0.68rem;
-        color: var(--text-dim);
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        background: rgba(255, 255, 255, 0.02);
       }
-      .copy-hint {
+      .install-header-left {
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+      }
+      .copy-btn {
         font-size: 0.65rem;
         color: var(--text-dim);
-        cursor: none;
-        transition: color 0.2s;
+        background: none;
+        border: 1px solid var(--border);
+        padding: 4px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-family: var(--ff-mono);
+        transition: all 0.2s;
       }
-      .copy-hint:hover {
-        color: var(--cyan);
+      .copy-btn:hover {
+        border-color: var(--emerald);
+        color: var(--emerald);
       }
-
-      .install-steps {
-        padding: 20px;
+      .install-body {
+        padding: 24px 20px;
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 4px;
       }
-      .install-step {
+      .install-line {
         display: flex;
-        gap: 16px;
-        align-items: baseline;
+        gap: 14px;
         font-size: 0.8rem;
-        line-height: 1.8;
+        line-height: 2;
       }
-      .step-num {
+      .il-num {
         color: var(--text-dim);
+        width: 18px;
         flex-shrink: 0;
-        width: 16px;
-        font-size: 0.65rem;
+        font-size: 0.7rem;
       }
-      .step-cmd {
-        color: var(--green);
+      .il-cmd {
+        color: #4ade80;
       }
-      .step-comment {
+      .il-arg {
+        color: var(--sky);
+      }
+      .il-comment {
         color: var(--text-dim);
         font-style: italic;
       }
+      .install-aside {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .aside-item {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      .aside-icon {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .aside-text strong {
+        display: block;
+        font-size: 0.78rem;
+        color: var(--text);
+        font-weight: 500;
+        margin-bottom: 3px;
+      }
+      .aside-text span {
+        font-size: 0.7rem;
+        color: var(--text-dim);
+        line-height: 1.55;
+      }
 
-      /* ─── FOOTER ─── */
-      footer {
+      /* MARQUEE */
+      .roles-section {
         position: relative;
         z-index: 1;
         border-top: 1px solid var(--border);
-        padding: 40px 48px;
-        max-width: 1200px;
+        border-bottom: 1px solid var(--border);
+        padding: 48px 0;
+        overflow: hidden;
+      }
+      .marquee-track {
+        display: flex;
+        gap: 12px;
+        animation: marquee 30s linear infinite;
+        width: max-content;
+      }
+      .marquee-track:hover {
+        animation-play-state: paused;
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+      .role-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        font-size: 0.72rem;
+        color: var(--text-mid);
+        background: var(--card);
+        white-space: nowrap;
+        letter-spacing: 0.04em;
+        transition: all 0.2s;
+      }
+      .role-chip:hover {
+        border-color: var(--border2);
+        color: var(--text);
+      }
+      .role-chip span {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--grad2);
+        flex-shrink: 0;
+      }
+
+      /* FOOTER */
+      footer {
+        position: relative;
+        z-index: 1;
+        max-width: 1280px;
         margin: 0 auto;
+        padding: 48px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: gap;
-        gap: 16px;
+        flex-wrap: wrap;
+        gap: 20px;
+        border-top: 1px solid var(--border);
       }
-      .footer-left {
+      .footer-brand {
+        font-family: var(--ff-display);
+        font-weight: 900;
+        font-size: 1.2rem;
+        letter-spacing: -0.03em;
+        background: var(--grad-text);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .footer-meta {
         font-size: 0.72rem;
         color: var(--text-dim);
+        margin-top: 6px;
       }
-      .footer-left strong {
-        color: var(--cyan);
-        font-weight: 500;
-      }
-      .footer-right {
-        font-size: 0.7rem;
-        color: var(--text-dim);
-        letter-spacing: 0.05em;
+      .footer-links {
+        display: flex;
+        gap: 10px;
       }
 
-      /* ─── ANIMATIONS ─── */
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      @keyframes fadeLeft {
-        from {
-          opacity: 0;
-          transform: translateX(30px) translateY(-50%);
-        }
-        to {
-          opacity: 1;
-          transform: translateX(0) translateY(-50%);
-        }
-      }
-
-      /* ─── SCROLLED REVEAL ─── */
+      /* REVEAL */
       .reveal {
         opacity: 0;
-        transform: translateY(24px);
+        transform: translateY(28px);
         transition:
           opacity 0.7s ease,
           transform 0.7s ease;
@@ -716,7 +943,114 @@
         transform: none;
       }
 
-      /* Scrollbar */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeLeft {
+        from {
+          opacity: 0;
+          transform: translateX(32px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 1024px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 100px 32px 60px;
+          gap: 48px;
+        }
+        .hero-terminal {
+          animation: fadeUp 0.9s ease 0.7s forwards;
+        }
+        .stats-inner {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .stat:nth-child(2) {
+          border-right: none;
+        }
+        .stat:nth-child(3) {
+          border-top: 1px solid var(--border);
+        }
+        .cmd-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .scoring-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .install-wrapper {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+      @media (max-width: 768px) {
+        nav {
+          padding: 0 20px;
+        }
+        .nav-links-desktop {
+          display: none;
+        }
+        .nav-version {
+          display: block;
+        }
+        .hero {
+          padding: 90px 20px 60px;
+        }
+        .hero-title {
+          font-size: 2.6rem;
+        }
+        .hero-desc {
+          font-size: 0.82rem;
+        }
+        .stat {
+          padding: 28px 24px;
+        }
+        .stat-num {
+          font-size: 2.2rem;
+        }
+        .section {
+          padding: 70px 20px;
+        }
+        .cmd-grid {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          padding: 32px 20px;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .s-title {
+          font-size: 2rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero-actions {
+          flex-direction: column;
+        }
+        .btn {
+          justify-content: center;
+        }
+        .stat:nth-child(2) {
+          border-right: none;
+        }
+        .stat:nth-child(3) {
+          border-top: 1px solid var(--border);
+          border-right: 1px solid var(--border);
+        }
+      }
+
       ::-webkit-scrollbar {
         width: 4px;
       }
@@ -724,192 +1058,251 @@
         background: var(--bg);
       }
       ::-webkit-scrollbar-thumb {
-        background: var(--border-bright);
+        background: var(--border2);
         border-radius: 2px;
       }
     </style>
   </head>
   <body>
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
+    <div class="mesh-bg"><div class="mesh-orb3"></div></div>
+    <div class="grid-overlay"></div>
+    <div class="noise"></div>
 
     <!-- NAV -->
     <nav>
-      <div class="nav-logo">cvz<span> /</span></div>
-      <ul class="nav-links">
-        <li><a href="#commands">Commands</a></li>
-        <li><a href="#scoring">Scoring</a></li>
-        <li><a href="#install">Install</a></li>
-      </ul>
-      <div class="nav-badge">v0.1.2 — PyPI</div>
+      <a href="#" class="nav-logo">cvz</a>
+      <div class="nav-right">
+        <div class="nav-links-desktop">
+          <a href="#commands" class="nav-link">Commands</a>
+          <a href="#scoring" class="nav-link">Scoring</a>
+          <a href="#install" class="nav-link">Install</a>
+        </div>
+        <a
+          href="https://github.com/anikchand461/cvz"
+          target="_blank"
+          class="nav-link"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+            />
+          </svg>
+          GitHub
+        </a>
+        <a
+          href="https://pypi.org/project/cvz/"
+          target="_blank"
+          class="nav-link"
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12.006 0C8.61 0 8.403.16 8.403 1.79v1.577h3.684V4H5.61C3.983 4 2.587 5.02 2.108 7.144c-.55 2.454-.574 3.985 0 6.55.426 1.908 1.44 3.306 3.068 3.306H6.9v-2.6c0-1.857 1.604-3.494 3.485-3.494h3.682c1.55 0 2.79-1.278 2.79-2.836V1.79C16.857.712 15.678 0 12.006 0zM10.23 1.116c.579 0 1.048.47 1.048 1.05a1.048 1.048 0 1 1-2.096 0c0-.58.469-1.05 1.048-1.05zM7.716 20.21v1.576c0 1.63.208 1.79 3.603 1.79 3.672 0 4.851-.712 4.851-1.79v-1.577h-1.726v.735c0 .579-.47 1.05-1.05 1.05H9.816a1.048 1.048 0 0 1-1.048-1.05v-.735H7.716zm7.07-14.8a1.047 1.047 0 1 1 0 2.095 1.047 1.047 0 0 1 0-2.095z"
+            />
+          </svg>
+          PyPI
+        </a>
+        <div class="nav-version">v0.1.2</div>
+      </div>
     </nav>
 
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-eyebrow">ATS Resume Analyzer — CLI Tool</div>
-      <h1 class="hero-title">
-        Score your<br />
-        resume.<br />
-        <span class="accent">Beat the</span> <span class="dim">ATS.</span>
-      </h1>
-      <p class="hero-sub">
-        A fast command-line tool that scores resumes against job roles using
-        keyword matching, semantic similarity, and structural analysis. Supports
-        PDF, DOCX, and TXT.
-      </p>
-      <div class="hero-actions">
-        <a href="#install" class="btn btn-primary">→ pip install cvz</a>
-        <a href="#commands" class="btn btn-ghost">View Commands</a>
+      <div class="hero-left">
+        <div class="hero-pill">
+          <div class="pill-dot"></div>
+          Open Source · Free · No backend
+        </div>
+        <h1 class="hero-title">
+          Score your<br />resume.<br />
+          <span class="grad">Beat the ATS.</span>
+        </h1>
+        <p class="hero-desc">
+          A fast CLI tool that scores resumes against 20+ job roles using
+          keyword matching, semantic similarity, and structural analysis. Works
+          with PDF, DOCX, and TXT — entirely offline.
+        </p>
+        <div class="hero-actions">
+          <a
+            href="https://pypi.org/project/cvz/"
+            target="_blank"
+            class="btn btn-grad"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12.006 0C8.61 0 8.403.16 8.403 1.79v1.577h3.684V4H5.61C3.983 4 2.587 5.02 2.108 7.144c-.55 2.454-.574 3.985 0 6.55.426 1.908 1.44 3.306 3.068 3.306H6.9v-2.6c0-1.857 1.604-3.494 3.485-3.494h3.682c1.55 0 2.79-1.278 2.79-2.836V1.79C16.857.712 15.678 0 12.006 0zM10.23 1.116c.579 0 1.048.47 1.048 1.05a1.048 1.048 0 1 1-2.096 0c0-.58.469-1.05 1.048-1.05zM7.716 20.21v1.576c0 1.63.208 1.79 3.603 1.79 3.672 0 4.851-.712 4.851-1.79v-1.577h-1.726v.735c0 .579-.47 1.05-1.05 1.05H9.816a1.048 1.048 0 0 1-1.048-1.05v-.735H7.716zm7.07-14.8a1.047 1.047 0 1 1 0 2.095 1.047 1.047 0 0 1 0-2.095z"
+              />
+            </svg>
+            pip install cvz
+          </a>
+          <a
+            href="https://github.com/anikchand461/cvz"
+            target="_blank"
+            class="btn btn-outline"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+              />
+            </svg>
+            View on GitHub
+          </a>
+        </div>
       </div>
 
-      <!-- Terminal -->
-      <div class="terminal-wrap">
+      <div class="hero-terminal">
+        <div class="terminal-glow"></div>
         <div class="terminal">
           <div class="terminal-bar">
-            <div class="dot dot-red"></div>
-            <div class="dot dot-yellow"></div>
-            <div class="dot dot-green"></div>
-            <div class="terminal-title">cvz — analyze</div>
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <div class="t-bar-title">cvz — analyze</div>
           </div>
           <div class="terminal-body">
             <div>
-              <span class="t-prompt">λ </span
-              ><span class="t-cmd">cvz analyze resume.pdf --role backend</span>
+              <span class="t-p">λ </span
+              ><span class="t-c">cvz analyze resume.pdf --role backend</span>
             </div>
-            <div class="t-dim">╭─────────────────────────────╮</div>
-            <div class="t-dim">│ CVZ — ATS Resume Analyzer │</div>
-            <div class="t-dim">╰─────────────────────────────╯</div>
+            <div class="t-d">╭──────────────────────────────────╮</div>
+            <div class="t-d">│ CVZ — ATS Resume Analyzer v0.1.2 │</div>
+            <div class="t-d">╰──────────────────────────────────╯</div>
             <br />
-            <div>
-              <span class="t-label">Keyword </span>
-              <span class="bar-track"
-                ><span class="t-green">████████████████</span
-                ><span class="t-dim">░░░░</span></span
-              >
-              <span class="t-green"> 78.4%</span>
+            <div class="t-row">
+              <span class="t-m" style="width: 70px">Keyword</span
+              ><span class="t-bar t-g">████████████████</span
+              ><span class="t-bar t-d">░░░░</span
+              ><span class="t-g" style="margin-left: 6px">78.4%</span>
             </div>
-            <div>
-              <span class="t-label">Semantic </span>
-              <span class="bar-track"
-                ><span class="t-yellow">█████████████</span
-                ><span class="t-dim">░░░░░░░</span></span
-              >
-              <span class="t-yellow"> 64.1%</span>
+            <div class="t-row">
+              <span class="t-m" style="width: 70px">Semantic</span
+              ><span class="t-bar t-y">█████████████</span
+              ><span class="t-bar t-d">░░░░░░░</span
+              ><span class="t-y" style="margin-left: 6px">64.1%</span>
             </div>
-            <div>
-              <span class="t-label">Structure</span>
-              <span class="bar-track"
-                ><span class="t-green">███████████████░</span
-                ><span class="t-dim">░░░░</span></span
-              >
-              <span class="t-green"> 81.0%</span>
+            <div class="t-row">
+              <span class="t-m" style="width: 70px">Structure</span
+              ><span class="t-bar t-g">███████████████</span
+              ><span class="t-bar t-d">░░░░░</span
+              ><span class="t-g" style="margin-left: 6px">81.0%</span>
             </div>
-            <div class="t-border"></div>
-            <div>
-              <span class="t-label">Final </span>
-              <span class="bar-track"
-                ><span class="t-cyan">████████████████</span
-                ><span class="t-dim">░░░░</span></span
+            <hr class="t-rule" />
+            <div class="t-row">
+              <span class="t-m" style="width: 70px">Final</span
+              ><span class="t-bar t-e">████████████████</span
+              ><span class="t-bar t-d">░░░░</span
+              ><span class="t-e" style="margin-left: 6px"
+                ><strong>74.9%</strong></span
               >
-              <span class="t-cyan"> <strong>74.9%</strong></span>
             </div>
             <br />
-            <div class="t-yellow">
-              ⚠️ Decent match. A few improvements could boost your score.
+            <div class="t-y">
+              ⚠️ Decent match — a few tweaks could boost your score.
             </div>
             <br />
-            <div class="t-dim">Missing Skills (top 5)</div>
-            <div class="t-red">✗ <span class="t-dim">kubernetes</span></div>
-            <div class="t-red">✗ <span class="t-dim">redis</span></div>
-            <div class="t-red">✗ <span class="t-dim">grpc</span></div>
-            <br />
-            <div>
-              <span class="t-prompt">λ </span><span class="blink"></span>
+            <div class="t-m" style="font-size: 0.72rem">
+              Missing Skills (top 3)
             </div>
+            <div class="t-r">✗ <span class="t-d">kubernetes</span></div>
+            <div class="t-r">✗ <span class="t-d">redis</span></div>
+            <div class="t-r">✗ <span class="t-d">grpc</span></div>
+            <br />
+            <div><span class="t-p">λ </span><span class="blink"></span></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- STATS -->
-    <div class="stats">
-      <div class="stat reveal">
-        <div class="stat-num">20+</div>
-        <div class="stat-label">Supported Roles</div>
+    <div class="stats-strip">
+      <div class="stats-inner">
+        <div class="stat reveal">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Supported Roles</div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Scoring Engines</div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num">3</div>
+          <div class="stat-label">File Formats</div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Cloud / No Backend</div>
+        </div>
       </div>
-      <div class="stat reveal">
-        <div class="stat-num">3</div>
-        <div class="stat-label">Scoring Engines</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat-num">3</div>
-        <div class="stat-label">File Formats</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat-num">0</div>
-        <div class="stat-label">Cloud / No Backend</div>
-      </div>
+    </div>
+
+    <!-- ROLES MARQUEE -->
+    <div class="roles-section">
+      <div class="marquee-track" id="marquee"></div>
     </div>
 
     <!-- COMMANDS -->
     <section class="section" id="commands">
-      <div class="section-label">Commands</div>
-      <h2 class="section-title reveal">
-        Everything you need,<br />in the terminal.
+      <div class="s-eyebrow reveal">Commands</div>
+      <h2 class="s-title reveal">
+        Everything you need,<br /><span class="serif">in the terminal.</span>
       </h2>
-
-      <div class="commands-grid reveal">
+      <p class="s-sub reveal">
+        Six focused commands covering every angle of resume analysis — from
+        scoring to gap detection to multi-resume comparison.
+      </p>
+      <div class="cmd-grid reveal">
         <div class="cmd-card">
-          <div class="cmd-name">cvz analyze</div>
+          <div class="cmd-tag">core</div>
+          <div class="cmd-name"><code>cvz analyze</code></div>
           <div class="cmd-desc">
             Score a resume against a specific role or custom job description.
-            Auto-detects the best role if none is provided.
+            Auto-detects the best matching role if none is specified.
           </div>
-          <div class="cmd-example">cvz analyze resume.pdf --role backend</div>
+          <div class="cmd-ex">cvz analyze resume.pdf --role backend</div>
         </div>
         <div class="cmd-card">
-          <div class="cmd-name">cvz gap</div>
+          <div class="cmd-tag">analysis</div>
+          <div class="cmd-name"><code>cvz gap</code></div>
           <div class="cmd-desc">
-            Show exactly which core skills are present and which are missing for
-            a given role. Export as JSON.
+            Show exactly which core skills are present and which are missing.
+            Clearly separates strengths from gaps with export support.
           </div>
-          <div class="cmd-example">
-            cvz gap resume.pdf --role machine_learning
-          </div>
+          <div class="cmd-ex">cvz gap resume.pdf --role machine_learning</div>
         </div>
         <div class="cmd-card">
-          <div class="cmd-name">cvz compare</div>
+          <div class="cmd-tag">comparison</div>
+          <div class="cmd-name"><code>cvz compare</code></div>
           <div class="cmd-desc">
-            Rank multiple resumes side by side. Useful for hiring or
-            self-benchmarking across different versions.
+            Rank two or more resumes side by side with a full score breakdown
+            per file. Great for self-benchmarking.
           </div>
-          <div class="cmd-example">cvz compare r1.pdf r2.pdf r3.pdf</div>
+          <div class="cmd-ex">cvz compare r1.pdf r2.pdf r3.pdf</div>
         </div>
         <div class="cmd-card">
-          <div class="cmd-name">cvz suggest-role</div>
+          <div class="cmd-tag">auto-detect</div>
+          <div class="cmd-name"><code>cvz suggest-role</code></div>
           <div class="cmd-desc">
             Auto-detect the top matching roles from the resume without
-            specifying one. Shows ranked results.
+            specifying one. Returns a ranked list of roles.
           </div>
-          <div class="cmd-example">cvz suggest-role resume.pdf --top 10</div>
+          <div class="cmd-ex">cvz suggest-role resume.pdf --top 10</div>
         </div>
         <div class="cmd-card">
-          <div class="cmd-name">cvz roles</div>
+          <div class="cmd-tag">utility</div>
+          <div class="cmd-name"><code>cvz roles</code></div>
           <div class="cmd-desc">
-            List all supported roles. From backend to blockchain, devops to
-            UI/UX — 20+ roles available.
+            List all 20+ supported roles. Backend, ML, DevOps, Blockchain, iOS,
+            UI/UX — and everything in between.
           </div>
-          <div class="cmd-example">cvz roles</div>
+          <div class="cmd-ex">cvz roles</div>
         </div>
         <div class="cmd-card">
-          <div class="cmd-name">--export</div>
+          <div class="cmd-tag">export</div>
+          <div class="cmd-name"><code>--export</code></div>
           <div class="cmd-desc">
-            Export any report to a JSON file. Works with analyze, gap, and
-            compare commands.
+            Export any report — analyze, gap, or compare — to a structured JSON
+            file for further processing or scripting.
           </div>
-          <div class="cmd-example">
-            cvz analyze resume.pdf --export report.json
-          </div>
+          <div class="cmd-ex">cvz analyze resume.pdf --export report.json</div>
         </div>
       </div>
     </section>
@@ -920,124 +1313,224 @@
       id="scoring"
       style="border-top: 1px solid var(--border)"
     >
-      <div class="section-label">How It Works</div>
-      <h2 class="section-title reveal">
-        Three engines.<br />One honest score.
+      <div class="s-eyebrow reveal">How It Scores</div>
+      <h2 class="s-title reveal">
+        Three engines.<br /><span class="serif">One honest score.</span>
       </h2>
-
-      <div class="scoring-layout">
-        <div class="scoring-text reveal">
-          <p>
-            cvz doesn't rely on a single metric. Every resume is evaluated
-            across three independent dimensions — keyword coverage, semantic
-            similarity via spaCy word vectors, and structural completeness.
-          </p>
-          <p>
-            The final score is a weighted average. Semantic scoring is
-            automatically gated — if keyword coverage is too weak, semantic
-            weight is reduced to prevent vector-level noise from inflating the
-            result.
-          </p>
-
-          <div class="threshold-list">
-            <div class="threshold">
-              <div class="threshold-dot" style="background: var(--green)"></div>
-              <span>Great match</span>
-              <span class="threshold-score">≥ 75%</span>
-            </div>
-            <div class="threshold">
+      <div class="scoring-grid">
+        <div class="score-meters reveal">
+          <div class="score-meter">
+            <div class="sm-header">
+              <div class="sm-label">
+                <div class="sm-icon" style="background: rgba(0, 245, 160, 0.1)">
+                  🔑
+                </div>
+                Keyword Matching
+              </div>
               <div
-                class="threshold-dot"
-                style="background: var(--yellow)"
-              ></div>
-              <span>Decent match</span>
-              <span class="threshold-score">50 – 74%</span>
+                class="sm-weight"
+                style="
+                  background: var(--grad-text);
+                  -webkit-background-clip: text;
+                  -webkit-text-fill-color: transparent;
+                  background-clip: text;
+                "
+              >
+                50%
+              </div>
             </div>
-            <div class="threshold">
-              <div class="threshold-dot" style="background: var(--red)"></div>
-              <span>Low match</span>
-              <span class="threshold-score">&lt; 50%</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="score-breakdown reveal">
-          <div class="score-row">
-            <div class="score-row-header">
-              <span class="score-row-label">Keyword Matching</span>
-              <span class="score-row-weight">50%</span>
-            </div>
-            <div class="score-bar-bg">
+            <div class="sm-track">
               <div
-                class="score-bar-fill"
+                class="sm-fill"
                 style="
                   width: 50%;
-                  background: var(--cyan);
+                  background: linear-gradient(90deg, #00f5a0, #38bdf8);
                   animation-delay: 0.2s;
                 "
               ></div>
             </div>
-            <div
-              style="
-                font-size: 0.68rem;
-                color: var(--text-dim);
-                margin-top: 4px;
-              "
-            >
-              Core (70pt) + Secondary (30pt) keyword groups. Whole-word
-              matching.
+            <div class="sm-desc">
+              Core keywords (70 pts) + secondary keywords (30 pts). Uses
+              whole-word regex to prevent false positives like "go" matching
+              "django".
             </div>
           </div>
-          <div class="score-row">
-            <div class="score-row-header">
-              <span class="score-row-label">Semantic Similarity</span>
-              <span class="score-row-weight">30%</span>
+          <div class="score-meter">
+            <div class="sm-header">
+              <div class="sm-label">
+                <div
+                  class="sm-icon"
+                  style="background: rgba(168, 85, 247, 0.1)"
+                >
+                  🧠
+                </div>
+                Semantic Similarity
+              </div>
+              <div class="sm-weight" style="color: var(--violet)">30%</div>
             </div>
-            <div class="score-bar-bg">
+            <div class="sm-track">
               <div
-                class="score-bar-fill"
+                class="sm-fill"
                 style="
                   width: 30%;
-                  background: var(--yellow);
-                  animation-delay: 0.4s;
+                  background: var(--violet);
+                  animation-delay: 0.5s;
                 "
               ></div>
             </div>
-            <div
-              style="
-                font-size: 0.68rem;
-                color: var(--text-dim);
-                margin-top: 4px;
-              "
-            >
-              spaCy cosine similarity. Optional — falls back gracefully if model
-              is absent.
+            <div class="sm-desc">
+              spaCy cosine similarity between resume and role keywords. Optional
+              — gracefully disabled if model isn't installed. Gated to prevent
+              score inflation.
             </div>
           </div>
-          <div class="score-row">
-            <div class="score-row-header">
-              <span class="score-row-label">Structure Analysis</span>
-              <span class="score-row-weight">20%</span>
+          <div class="score-meter">
+            <div class="sm-header">
+              <div class="sm-label">
+                <div
+                  class="sm-icon"
+                  style="background: rgba(56, 189, 248, 0.1)"
+                >
+                  📐
+                </div>
+                Structure Analysis
+              </div>
+              <div class="sm-weight" style="color: var(--sky)">20%</div>
             </div>
-            <div class="score-bar-bg">
+            <div class="sm-track">
               <div
-                class="score-bar-fill"
+                class="sm-fill"
                 style="
                   width: 20%;
-                  background: var(--green);
-                  animation-delay: 0.6s;
+                  background: var(--sky);
+                  animation-delay: 0.8s;
                 "
               ></div>
             </div>
+            <div class="sm-desc">
+              Weighted presence of standard resume sections (Education,
+              Experience, Skills, Projects…) combined with resume length
+              scoring.
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal">
+          <div class="thresholds">
+            <div class="thresh-title">Score Thresholds</div>
+            <div class="thresh-row">
+              <div class="thresh-dot" style="background: #4ade80"></div>
+              <span class="thresh-label">Great match — well aligned</span
+              ><span class="thresh-val" style="color: #4ade80">≥ 75%</span>
+            </div>
+            <div class="thresh-row">
+              <div class="thresh-dot" style="background: var(--amber)"></div>
+              <span class="thresh-label">Decent match — improvable</span
+              ><span class="thresh-val" style="color: var(--amber)"
+                >50–74%</span
+              >
+            </div>
+            <div class="thresh-row">
+              <div class="thresh-dot" style="background: var(--rose)"></div>
+              <span class="thresh-label">Low match — needs work</span
+              ><span class="thresh-val" style="color: var(--rose)"
+                >&lt; 50%</span
+              >
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 32px;
+              padding: 28px;
+              background: var(--card);
+              border: 1px solid var(--border);
+              border-radius: 12px;
+            "
+          >
             <div
               style="
                 font-size: 0.68rem;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
                 color: var(--text-dim);
-                margin-top: 4px;
+                margin-bottom: 16px;
               "
             >
-              Weighted section presence (Education, Experience, Skills…) +
-              resume length.
+              Supported Formats
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 12px">
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  font-size: 0.78rem;
+                "
+              >
+                <span
+                  style="
+                    width: 48px;
+                    text-align: center;
+                    background: rgba(251, 191, 36, 0.1);
+                    border: 1px solid rgba(251, 191, 36, 0.2);
+                    color: var(--amber);
+                    padding: 3px 8px;
+                    border-radius: 5px;
+                    font-size: 0.65rem;
+                  "
+                  >.pdf</span
+                ><span style="color: var(--text-mid)"
+                  >pdfplumber — text extraction per page</span
+                >
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  font-size: 0.78rem;
+                "
+              >
+                <span
+                  style="
+                    width: 48px;
+                    text-align: center;
+                    background: rgba(56, 189, 248, 0.1);
+                    border: 1px solid rgba(56, 189, 248, 0.2);
+                    color: var(--sky);
+                    padding: 3px 8px;
+                    border-radius: 5px;
+                    font-size: 0.65rem;
+                  "
+                  >.docx</span
+                ><span style="color: var(--text-mid)"
+                  >python-docx — paragraphs + tables</span
+                >
+              </div>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  font-size: 0.78rem;
+                "
+              >
+                <span
+                  style="
+                    width: 48px;
+                    text-align: center;
+                    background: rgba(0, 245, 160, 0.1);
+                    border: 1px solid rgba(0, 245, 160, 0.2);
+                    color: var(--emerald);
+                    padding: 3px 8px;
+                    border-radius: 5px;
+                    font-size: 0.65rem;
+                  "
+                  >.txt</span
+                ><span style="color: var(--text-mid)"
+                  >built-in — UTF-8 with error handling</span
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -1050,100 +1543,188 @@
       id="install"
       style="border-top: 1px solid var(--border)"
     >
-      <div class="section-label">Install</div>
-      <h2 class="section-title reveal">Up and running<br />in 60 seconds.</h2>
-
-      <div class="install-box reveal">
-        <div class="install-box-header">
-          <span>bash</span>
-          <span class="copy-hint">copy</span>
+      <div class="s-eyebrow reveal">Get Started</div>
+      <h2 class="s-title reveal">
+        Up and running<br /><span class="serif">in 60 seconds.</span>
+      </h2>
+      <div class="install-wrapper">
+        <div class="install-card reveal">
+          <div class="install-header">
+            <span class="install-header-left">bash</span>
+            <button class="copy-btn" id="copyBtn">copy</button>
+          </div>
+          <div class="install-body">
+            <div class="install-line">
+              <span class="il-num">1</span
+              ><span
+                ><span class="il-cmd">pip install</span>
+                <span class="il-arg">cvz</span></span
+              >
+            </div>
+            <div class="install-line">
+              <span class="il-num">2</span
+              ><span
+                ><span class="il-cmd">python -m spacy download</span
+                ><span class="il-arg"> en_core_web_md</span
+                ><span class="il-comment"> # optional</span></span
+              >
+            </div>
+            <div class="install-line">
+              <span class="il-num">3</span
+              ><span
+                ><span class="il-cmd">cvz analyze</span>
+                <span class="il-arg">resume.pdf</span>
+                <span style="color: var(--text-dim)">--role backend</span></span
+              >
+            </div>
+          </div>
         </div>
-        <div class="install-steps">
-          <div class="install-step">
-            <span class="step-num">1</span>
-            <span class="step-cmd">pip install cvz</span>
+        <div class="install-aside reveal">
+          <div class="aside-item">
+            <div class="aside-icon">🐍</div>
+            <div class="aside-text">
+              <strong>Python 3.9+</strong
+              ><span
+                >Compatible with all modern Python versions. Install via pip
+                from PyPI.</span
+              >
+            </div>
           </div>
-          <div class="install-step">
-            <span class="step-num">2</span>
-            <span class="step-cmd"
-              >python -m spacy download en_core_web_md</span
-            >
-            <span class="step-comment"
-              >&nbsp;# optional, for semantic scoring</span
-            >
+          <div class="aside-item">
+            <div class="aside-icon">📡</div>
+            <div class="aside-text">
+              <strong>Works fully offline</strong
+              ><span
+                >No API calls, no cloud. Everything runs locally on your
+                machine.</span
+              >
+            </div>
           </div>
-          <div class="install-step">
-            <span class="step-num">3</span>
-            <span class="step-cmd">cvz analyze resume.pdf --role backend</span>
+          <div class="aside-item">
+            <div class="aside-icon">🧩</div>
+            <div class="aside-text">
+              <strong>Extend with custom roles</strong
+              ><span
+                >Edit
+                <code style="color: var(--sky); font-size: 0.7rem"
+                  >roles.json</code
+                >
+                to add your own keyword sets for any role.</span
+              >
+            </div>
+          </div>
+          <div class="aside-item">
+            <div class="aside-icon">📦</div>
+            <div class="aside-text">
+              <strong>Export everything as JSON</strong
+              ><span
+                >All commands support
+                <code style="color: var(--sky); font-size: 0.7rem"
+                  >--export</code
+                >
+                for downstream processing.</span
+              >
+            </div>
           </div>
         </div>
-      </div>
-
-      <div style="margin-top: 24px; font-size: 0.75rem; color: var(--text-dim)">
-        Requires Python 3.9+ &nbsp;·&nbsp; PDF, DOCX, TXT supported
-        &nbsp;·&nbsp; No internet required at runtime
       </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-      <div class="footer-left">
-        Built by <strong>Anik Chand</strong> &nbsp;·&nbsp;
-        <strong>cvz</strong> — ATS Resume Analyzer
+      <div>
+        <div class="footer-brand">cvz</div>
+        <div class="footer-meta">
+          Built by Anik Chand · MIT License · v0.1.2
+        </div>
       </div>
-      <div class="footer-right">pip install cvz</div>
+      <div class="footer-links">
+        <a
+          href="https://github.com/anikchand461/cvz"
+          target="_blank"
+          class="nav-link"
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
+            />
+          </svg>
+          GitHub
+        </a>
+        <a
+          href="https://pypi.org/project/cvz/"
+          target="_blank"
+          class="nav-link"
+        >
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12.006 0C8.61 0 8.403.16 8.403 1.79v1.577h3.684V4H5.61C3.983 4 2.587 5.02 2.108 7.144c-.55 2.454-.574 3.985 0 6.55.426 1.908 1.44 3.306 3.068 3.306H6.9v-2.6c0-1.857 1.604-3.494 3.485-3.494h3.682c1.55 0 2.79-1.278 2.79-2.836V1.79C16.857.712 15.678 0 12.006 0zM10.23 1.116c.579 0 1.048.47 1.048 1.05a1.048 1.048 0 1 1-2.096 0c0-.58.469-1.05 1.048-1.05zM7.716 20.21v1.576c0 1.63.208 1.79 3.603 1.79 3.672 0 4.851-.712 4.851-1.79v-1.577h-1.726v.735c0 .579-.47 1.05-1.05 1.05H9.816a1.048 1.048 0 0 1-1.048-1.05v-.735H7.716zm7.07-14.8a1.047 1.047 0 1 1 0 2.095 1.047 1.047 0 0 1 0-2.095z"
+            />
+          </svg>
+          PyPI
+        </a>
+      </div>
     </footer>
 
     <script>
-      // Custom cursor
-      const cursor = document.getElementById("cursor");
-      const ring = document.getElementById("cursorRing");
-      let mx = 0,
-        my = 0,
-        rx = 0,
-        ry = 0;
-
-      document.addEventListener("mousemove", (e) => {
-        mx = e.clientX;
-        my = e.clientY;
-        cursor.style.left = mx - 4 + "px";
-        cursor.style.top = my - 4 + "px";
+      // Roles marquee
+      const roles = [
+        "backend",
+        "frontend",
+        "full_stack",
+        "software_engineer",
+        "data_scientist",
+        "data_analyst",
+        "machine_learning",
+        "ai_engineer",
+        "devops",
+        "cloud_engineer",
+        "android",
+        "ios",
+        "cybersecurity",
+        "qa_engineer",
+        "product_manager",
+        "ui_ux_designer",
+        "blockchain",
+        "embedded_systems",
+        "nlp_engineer",
+        "mlops",
+      ];
+      const track = document.getElementById("marquee");
+      [...roles, ...roles].forEach((r) => {
+        const c = document.createElement("div");
+        c.className = "role-chip";
+        c.innerHTML = `<span></span>${r.replace(/_/g, " ")}`;
+        track.appendChild(c);
       });
 
-      (function animRing() {
-        rx += (mx - rx) * 0.12;
-        ry += (my - ry) * 0.12;
-        ring.style.left = rx + "px";
-        ring.style.top = ry + "px";
-        requestAnimationFrame(animRing);
-      })();
-
       // Scroll reveal
-      const reveals = document.querySelectorAll(".reveal");
       const obs = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("visible");
-            }
-          });
-        },
-        { threshold: 0.12 },
+        (e) =>
+          e.forEach((x) => {
+            if (x.isIntersecting) x.target.classList.add("visible");
+          }),
+        { threshold: 0.1 },
       );
-      reveals.forEach((el) => obs.observe(el));
+      document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
 
-      // Copy hint
-      document
-        .querySelector(".copy-hint")
-        .addEventListener("click", function () {
-          const lines = [...document.querySelectorAll(".step-cmd")]
-            .map((el) => el.textContent)
-            .join("\n");
-          navigator.clipboard.writeText(lines).then(() => {
+      // Copy button
+      document.getElementById("copyBtn").addEventListener("click", function () {
+        navigator.clipboard
+          .writeText(
+            "pip install cvz\npython -m spacy download en_core_web_md\ncvz analyze resume.pdf --role backend",
+          )
+          .then(() => {
             this.textContent = "copied ✓";
-            setTimeout(() => (this.textContent = "copy"), 1800);
+            this.style.cssText +=
+              "color:var(--emerald);border-color:var(--emerald)";
+            setTimeout(() => {
+              this.textContent = "copy";
+              this.style.color = "";
+              this.style.borderColor = "";
+            }, 2000);
           });
-        });
+      });
     </script>
   </body>
 </html>
