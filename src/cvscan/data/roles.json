@@ -1,201 +1,1215 @@
 {
   "backend": {
     "core": [
-      ["python", "java", "nodejs", "golang"],
-      ["django", "flask", "fastapi", "spring boot"],
-      ["api", "rest", "graphql"],
-      ["sql", "postgresql", "mysql"],
-      ["authentication", "jwt", "oauth"]
+      [
+        "python",
+        "java",
+        "nodejs",
+        "node js",
+        "golang",
+        "go",
+        "ruby",
+        "php",
+        "scala",
+        "kotlin",
+        "rust",
+        "c#",
+        "dotnet",
+        ".net"
+      ],
+      [
+        "django",
+        "flask",
+        "fastapi",
+        "spring",
+        "spring boot",
+        "express",
+        "expressjs",
+        "rails",
+        "laravel",
+        "gin",
+        "fiber",
+        "asp.net"
+      ],
+      [
+        "api",
+        "rest",
+        "restful",
+        "graphql",
+        "grpc",
+        "soap",
+        "webhook",
+        "microservice"
+      ],
+      [
+        "sql",
+        "postgresql",
+        "postgres",
+        "mysql",
+        "mariadb",
+        "sqlite",
+        "mssql",
+        "oracle"
+      ],
+      [
+        "authentication",
+        "auth",
+        "jwt",
+        "oauth",
+        "oauth2",
+        "sso",
+        "session",
+        "token"
+      ]
     ],
     "secondary": [
-      ["mongodb", "redis"],
-      ["docker", "kubernetes"],
-      ["nginx", "load balancing"],
-      ["microservices"],
-      ["kafka", "rabbitmq"],
-      ["system design"],
-      ["scalability"]
+      [
+        "mongodb",
+        "redis",
+        "cassandra",
+        "dynamodb",
+        "couchdb",
+        "elasticsearch",
+        "neo4j"
+      ],
+      ["docker", "kubernetes", "k8s", "containerization", "container"],
+      ["nginx", "apache", "load balancing", "reverse proxy"],
+      ["microservices", "service mesh", "event driven", "event-driven"],
+      [
+        "kafka",
+        "rabbitmq",
+        "celery",
+        "message queue",
+        "pub sub",
+        "pubsub",
+        "sqs",
+        "sns"
+      ],
+      ["system design", "distributed systems", "high availability"],
+      ["scalability", "performance", "caching", "optimization"],
+      ["git", "github", "gitlab", "version control", "ci cd", "cicd"],
+      ["linux", "bash", "shell", "unix"],
+      ["aws", "azure", "gcp", "cloud"],
+      ["orm", "sqlalchemy", "hibernate", "prisma", "sequelize"],
+      ["unit test", "integration test", "pytest", "junit", "testing"]
     ]
   },
 
   "frontend": {
     "core": [
-      ["html"],
-      ["css"],
-      ["javascript", "typescript"],
-      ["react", "angular", "vue"],
-      ["responsive", "ui", "ux"]
+      ["html", "html5"],
+      [
+        "css",
+        "css3",
+        "scss",
+        "sass",
+        "less",
+        "styled components",
+        "tailwind",
+        "bootstrap"
+      ],
+      ["javascript", "typescript", "js", "ts", "es6", "ecmascript"],
+      [
+        "react",
+        "reactjs",
+        "react.js",
+        "angular",
+        "vue",
+        "vuejs",
+        "vue.js",
+        "svelte",
+        "solid"
+      ],
+      [
+        "responsive design",
+        "responsive",
+        "mobile first",
+        "ui",
+        "ux",
+        "user interface",
+        "user experience"
+      ]
     ],
     "secondary": [
-      ["redux", "context api"],
-      ["tailwind", "bootstrap", "sass"],
-      ["nextjs"],
-      ["webpack", "vite"],
-      ["dom manipulation"]
+      ["redux", "zustand", "context api", "recoil", "mobx", "state management"],
+      [
+        "tailwind",
+        "bootstrap",
+        "material ui",
+        "chakra ui",
+        "ant design",
+        "shadcn"
+      ],
+      ["nextjs", "next.js", "nuxt", "gatsby", "remix"],
+      ["webpack", "vite", "parcel", "rollup", "bundler", "esbuild"],
+      ["dom", "dom manipulation", "browser api", "web api"],
+      [
+        "jest",
+        "vitest",
+        "cypress",
+        "playwright",
+        "testing library",
+        "unit test"
+      ],
+      ["figma", "design system", "storybook", "component library"],
+      [
+        "seo",
+        "web performance",
+        "lighthouse",
+        "core web vitals",
+        "accessibility",
+        "wcag"
+      ],
+      ["pwa", "progressive web app", "service worker"],
+      ["graphql", "rest api", "axios", "fetch", "react query", "swr"],
+      ["git", "github", "version control"],
+      ["animation", "framer motion", "gsap", "css animation"]
     ]
   },
 
   "full_stack": {
     "core": [
-      ["frontend", "backend"],
-      ["react", "angular", "vue"],
-      ["nodejs", "express"],
-      ["mongodb", "sql"],
-      ["api"]
+      ["frontend", "backend", "full stack", "fullstack"],
+      ["react", "angular", "vue", "nextjs", "svelte"],
+      ["nodejs", "express", "django", "fastapi", "flask", "rails"],
+      ["mongodb", "postgresql", "mysql", "sql", "database"],
+      ["api", "rest", "restful", "graphql"]
     ],
     "secondary": [
-      ["authentication"],
-      ["deployment"],
-      ["docker"],
-      ["system design"],
-      ["web application"]
+      ["authentication", "jwt", "oauth"],
+      ["deployment", "ci cd", "devops"],
+      ["docker", "kubernetes", "container"],
+      ["system design", "architecture"],
+      ["web application", "spa", "ssr", "server side rendering"],
+      ["typescript", "javascript"],
+      ["html", "css"],
+      ["git", "github", "version control"],
+      ["aws", "azure", "gcp", "cloud", "vercel", "netlify", "heroku"],
+      ["redis", "caching"],
+      ["testing", "jest", "pytest"]
     ]
   },
 
   "data_scientist": {
     "core": [
-      ["python", "r"],
-      ["pandas", "numpy"],
-      ["machine learning"],
-      ["data analysis"],
-      ["statistics"]
+      ["python", "r", "julia"],
+      ["pandas", "numpy", "scipy", "polars"],
+      ["machine learning", "ml", "statistical modeling", "predictive modeling"],
+      ["data analysis", "data analytics", "exploratory data analysis", "eda"],
+      [
+        "statistics",
+        "statistical analysis",
+        "probability",
+        "hypothesis testing",
+        "regression"
+      ]
     ],
     "secondary": [
-      ["tensorflow", "pytorch"],
-      ["scikit learn"],
-      ["feature engineering"],
-      ["data visualization"],
-      ["matplotlib", "seaborn"],
-      ["nlp", "computer vision"]
+      ["tensorflow", "pytorch", "keras", "jax"],
+      [
+        "scikit learn",
+        "sklearn",
+        "scikit-learn",
+        "xgboost",
+        "lightgbm",
+        "catboost"
+      ],
+      [
+        "feature engineering",
+        "feature selection",
+        "dimensionality reduction",
+        "pca"
+      ],
+      [
+        "data visualization",
+        "visualization",
+        "matplotlib",
+        "seaborn",
+        "plotly",
+        "bokeh"
+      ],
+      [
+        "nlp",
+        "natural language processing",
+        "text mining",
+        "sentiment analysis"
+      ],
+      ["computer vision", "cv", "image processing", "opencv"],
+      ["sql", "bigquery", "snowflake", "data warehouse"],
+      ["jupyter", "notebook", "colab", "google colab"],
+      ["a b testing", "experiment design", "bayesian"],
+      ["spark", "pyspark", "hadoop", "big data"],
+      ["time series", "forecasting", "arima"],
+      ["deep learning", "neural networks"],
+      ["data cleaning", "data wrangling", "etl", "data pipeline"],
+      ["tableau", "power bi", "dashboard", "looker"],
+      ["git", "github", "version control"],
+      ["aws", "azure", "gcp", "cloud", "sagemaker", "databricks"]
     ]
   },
 
   "data_analyst": {
     "core": [
-      ["excel"],
-      ["sql"],
-      ["data analysis"],
-      ["data visualization"],
-      ["reporting"]
+      ["excel", "spreadsheet", "google sheets"],
+      ["sql", "mysql", "postgresql", "bigquery", "redshift", "snowflake"],
+      ["data analysis", "data analytics", "analysis", "analytical"],
+      ["data visualization", "visualization", "reporting", "dashboard"],
+      ["reporting", "report", "insights", "business insights"]
     ],
     "secondary": [
-      ["power bi", "tableau"],
-      ["python", "pandas"],
-      ["dashboard"],
-      ["eda"],
-      ["business intelligence"]
+      ["power bi", "tableau", "looker", "metabase", "superset", "qlik"],
+      ["python", "pandas", "numpy", "r"],
+      ["eda", "exploratory data analysis"],
+      ["kpi", "metrics", "okr", "performance metrics"],
+      ["business intelligence", "bi", "data driven"],
+      ["etl", "data pipeline", "data warehouse", "data mart"],
+      ["statistics", "statistical analysis", "regression", "correlation"],
+      ["a b testing", "hypothesis testing", "experiment"],
+      ["presentation", "storytelling", "stakeholder", "communication"],
+      ["spark", "hadoop", "big data"],
+      ["forecasting", "prediction", "trend analysis"],
+      ["data cleaning", "data quality", "data wrangling"],
+      ["google analytics", "mixpanel", "amplitude", "segment"]
     ]
   },
 
   "machine_learning": {
     "core": [
-      ["machine learning"],
-      ["deep learning"],
-      ["model training"],
-      ["feature engineering"]
+      ["machine learning", "ml"],
+      ["deep learning", "dl", "neural networks", "neural nets"],
+      [
+        "model training",
+        "model development",
+        "model building",
+        "training pipeline"
+      ],
+      ["feature engineering", "feature selection", "feature extraction"]
     ],
     "secondary": [
-      ["tensorflow", "pytorch", "keras"],
-      ["nlp"],
-      ["computer vision", "cv"],
-      ["transformers"],
-      ["mlops"],
-      ["hyperparameter tuning"],
-      ["unsupervised learning"],
-      ["reinforcement learning"]
+      ["tensorflow", "pytorch", "keras", "jax", "mxnet"],
+      [
+        "nlp",
+        "natural language processing",
+        "text classification",
+        "ner",
+        "named entity"
+      ],
+      [
+        "computer vision",
+        "cv",
+        "image classification",
+        "object detection",
+        "segmentation",
+        "yolo"
+      ],
+      [
+        "transformers",
+        "bert",
+        "gpt",
+        "attention",
+        "huggingface",
+        "hugging face"
+      ],
+      [
+        "mlops",
+        "model deployment",
+        "model serving",
+        "model monitoring",
+        "ml pipeline"
+      ],
+      [
+        "hyperparameter tuning",
+        "optuna",
+        "ray tune",
+        "grid search",
+        "cross validation"
+      ],
+      ["unsupervised learning", "clustering", "k-means", "dbscan", "pca"],
+      ["reinforcement learning", "rl", "reward", "policy", "q-learning"],
+      [
+        "scikit learn",
+        "sklearn",
+        "xgboost",
+        "lightgbm",
+        "catboost",
+        "random forest"
+      ],
+      ["python", "r", "julia"],
+      ["pandas", "numpy", "scipy"],
+      ["data pipeline", "etl", "airflow", "kubeflow", "mlflow"],
+      ["docker", "kubernetes", "cloud", "aws", "azure", "gcp", "sagemaker"],
+      ["experiment tracking", "mlflow", "wandb", "weights and biases"],
+      ["sql", "bigquery", "spark", "pyspark"],
+      ["regression", "classification", "clustering", "anomaly detection"]
     ]
   },
 
   "ai_engineer": {
     "core": [
-      ["artificial intelligence", "ai"],
-      ["machine learning"],
-      ["deep learning"],
-      ["neural networks"]
+      ["machine learning", "ml", "artificial intelligence", "ai"],
+      ["deep learning", "dl", "neural networks", "neural nets"],
+      [
+        "nlp",
+        "natural language processing",
+        "llm",
+        "large language model",
+        "language model",
+        "gpt",
+        "bert",
+        "transformers"
+      ],
+      ["python"],
+      [
+        "model deployment",
+        "model serving",
+        "inference",
+        "production ml",
+        "mlops"
+      ]
     ],
     "secondary": [
-      ["nlp"],
-      ["computer vision"],
-      ["transformers"],
-      ["llm", "gpt"],
-      ["tensorflow", "pytorch"],
-      ["mlops"]
+      ["tensorflow", "pytorch", "keras", "jax"],
+      [
+        "langchain",
+        "llamaindex",
+        "llama index",
+        "rag",
+        "retrieval augmented generation",
+        "faiss",
+        "vector database",
+        "pinecone",
+        "weaviate",
+        "chroma"
+      ],
+      [
+        "computer vision",
+        "cv",
+        "object detection",
+        "image classification",
+        "yolo",
+        "opencv"
+      ],
+      [
+        "huggingface",
+        "hugging face",
+        "diffusers",
+        "stable diffusion",
+        "fine tuning",
+        "lora"
+      ],
+      ["scikit learn", "sklearn", "xgboost"],
+      ["fastapi", "flask", "api", "rest api"],
+      ["docker", "kubernetes", "k8s", "container"],
+      ["aws", "azure", "gcp", "cloud", "sagemaker", "vertex ai", "bedrock"],
+      ["mlflow", "wandb", "experiment tracking", "model registry"],
+      ["prompt engineering", "prompting", "chain of thought", "few shot"],
+      ["openai", "anthropic", "gemini", "claude", "chatgpt", "gpt-4"],
+      ["airflow", "kubeflow", "ml pipeline", "data pipeline"],
+      ["spark", "pyspark", "big data"],
+      ["sql", "nosql", "database"],
+      ["git", "github", "ci cd"],
+      ["reinforcement learning", "rl", "rlhf"],
+      ["embedding", "vector search", "semantic search", "similarity search"]
     ]
   },
 
   "devops": {
     "core": [
-      ["docker"],
-      ["kubernetes"],
-      ["ci cd"],
-      ["aws", "azure", "gcp"],
-      ["linux"]
+      ["docker", "containerization", "container"],
+      ["kubernetes", "k8s", "helm", "eks", "aks", "gke"],
+      [
+        "ci cd",
+        "cicd",
+        "continuous integration",
+        "continuous delivery",
+        "continuous deployment",
+        "pipeline"
+      ],
+      ["aws", "azure", "gcp", "cloud", "amazon web services", "google cloud"],
+      ["linux", "unix", "bash", "shell", "shell scripting"]
     ],
     "secondary": [
-      ["terraform"],
-      ["jenkins", "github actions"],
-      ["monitoring", "grafana", "prometheus"],
-      ["nginx"],
-      ["load balancing"],
-      ["infrastructure as code"]
+      [
+        "terraform",
+        "pulumi",
+        "cloudformation",
+        "infrastructure as code",
+        "iac",
+        "ansible",
+        "puppet",
+        "chef"
+      ],
+      [
+        "jenkins",
+        "github actions",
+        "gitlab ci",
+        "circleci",
+        "travis",
+        "argo cd",
+        "argocd",
+        "tekton"
+      ],
+      [
+        "monitoring",
+        "observability",
+        "grafana",
+        "prometheus",
+        "datadog",
+        "new relic",
+        "splunk",
+        "elk",
+        "elasticsearch"
+      ],
+      ["nginx", "haproxy", "load balancer", "reverse proxy"],
+      ["networking", "vpc", "dns", "ssl", "tls", "firewall", "security group"],
+      ["git", "github", "gitlab", "version control"],
+      ["python", "golang", "bash", "scripting"],
+      ["security", "devsecops", "vulnerability", "compliance", "iam"],
+      ["redis", "kafka", "rabbitmq", "message queue"],
+      ["mysql", "postgresql", "database", "rds"],
+      ["service mesh", "istio", "envoy", "linkerd"],
+      ["logging", "tracing", "alerting", "incident management"],
+      ["cost optimization", "cloud cost", "finops"],
+      ["disaster recovery", "backup", "high availability", "sla"]
     ]
   },
 
   "cloud_engineer": {
     "core": [
-      ["aws", "azure", "gcp"],
-      ["cloud architecture"],
-      ["docker"],
-      ["kubernetes"]
+      ["aws", "azure", "gcp", "google cloud", "amazon web services", "cloud"],
+      [
+        "cloud architecture",
+        "cloud infrastructure",
+        "cloud design",
+        "solutions architect"
+      ],
+      ["docker", "container", "containerization"],
+      ["kubernetes", "k8s", "eks", "aks", "gke", "helm"]
     ],
     "secondary": [
-      ["terraform"],
-      ["networking"],
-      ["security groups"],
-      ["deployment"],
-      ["scalability"]
+      [
+        "terraform",
+        "cloudformation",
+        "pulumi",
+        "cdk",
+        "infrastructure as code",
+        "iac"
+      ],
+      ["networking", "vpc", "subnet", "route", "dns", "cdn", "load balancer"],
+      [
+        "security",
+        "iam",
+        "rbac",
+        "encryption",
+        "ssl",
+        "tls",
+        "compliance",
+        "zero trust"
+      ],
+      [
+        "lambda",
+        "serverless",
+        "functions",
+        "faas",
+        "cloud functions",
+        "azure functions"
+      ],
+      ["s3", "blob storage", "gcs", "object storage"],
+      ["rds", "aurora", "cloud sql", "database", "managed database"],
+      ["ci cd", "cicd", "devops", "automation"],
+      ["monitoring", "cloudwatch", "azure monitor", "logging", "alerting"],
+      ["scalability", "auto scaling", "elasticity", "high availability"],
+      ["cost optimization", "reserved instances", "cost management", "finops"],
+      ["migration", "cloud migration", "lift and shift"],
+      ["linux", "bash", "python", "scripting"],
+      ["microservices", "api gateway", "service mesh"]
     ]
   },
 
   "software_engineer": {
-    "core": [["data structures"], ["algorithms"], ["oop"], ["system design"]],
+    "core": [
+      [
+        "data structures",
+        "arrays",
+        "linked list",
+        "trees",
+        "graphs",
+        "hash map"
+      ],
+      [
+        "algorithms",
+        "sorting",
+        "searching",
+        "dynamic programming",
+        "recursion",
+        "complexity"
+      ],
+      [
+        "oop",
+        "object oriented",
+        "object-oriented",
+        "design patterns",
+        "solid principles"
+      ],
+      ["system design", "architecture", "scalability", "distributed systems"]
+    ],
     "secondary": [
-      ["python", "java", "c++"],
-      ["git"],
-      ["problem solving"],
-      ["software development"]
+      [
+        "python",
+        "java",
+        "c++",
+        "c",
+        "golang",
+        "rust",
+        "kotlin",
+        "swift",
+        "javascript",
+        "typescript"
+      ],
+      ["git", "github", "gitlab", "version control"],
+      ["problem solving", "leetcode", "competitive programming", "coding"],
+      ["software development", "sdlc", "agile", "scrum", "kanban"],
+      [
+        "unit test",
+        "integration test",
+        "tdd",
+        "test driven development",
+        "testing"
+      ],
+      ["sql", "database", "nosql"],
+      ["api", "rest", "microservices"],
+      ["docker", "linux", "cloud"],
+      ["ci cd", "devops", "automation"],
+      ["debugging", "profiling", "performance optimization"],
+      ["code review", "pair programming", "collaboration"],
+      ["multithreading", "concurrency", "parallel programming", "async"]
     ]
   },
 
   "android": {
     "core": [
-      ["android"],
+      ["android", "android development"],
       ["kotlin", "java"],
-      ["android studio"],
-      ["mobile development"]
+      ["android studio", "android sdk"],
+      ["mobile development", "mobile app", "mobile application"]
     ],
-    "secondary": [["firebase"], ["rest api"], ["ui"], ["mvvm", "mvc"]]
+    "secondary": [
+      [
+        "jetpack compose",
+        "compose",
+        "xml layout",
+        "view binding",
+        "data binding"
+      ],
+      ["mvvm", "mvc", "mvi", "clean architecture", "repository pattern"],
+      ["retrofit", "okhttp", "volley", "rest api", "api integration"],
+      ["room", "sqlite", "local database", "shared preferences", "datastore"],
+      [
+        "firebase",
+        "firestore",
+        "realtime database",
+        "fcm",
+        "push notification"
+      ],
+      ["coroutines", "flow", "rxjava", "rxandroid", "async", "threading"],
+      ["hilt", "dagger", "dependency injection", "di"],
+      ["navigation component", "fragment", "activity", "intent"],
+      ["google play", "play store", "app release", "apk", "aab"],
+      ["unit test", "espresso", "mockito", "junit", "testing"],
+      ["material design", "ui", "ux", "animations"],
+      ["gradle", "build system"],
+      ["bluetooth", "nfc", "camera", "sensor", "hardware api"],
+      ["git", "github", "version control"]
+    ]
   },
 
   "ios": {
-    "core": [["ios"], ["swift"], ["xcode"], ["mobile development"]],
-    "secondary": [["uikit", "swiftui"], ["api integration"], ["mvvm"]]
+    "core": [
+      ["ios", "ios development"],
+      ["swift", "objective-c", "objc"],
+      ["xcode"],
+      ["mobile development", "mobile app", "mobile application"]
+    ],
+    "secondary": [
+      ["swiftui", "uikit", "storyboard", "autolayout", "interface builder"],
+      ["mvvm", "mvc", "viper", "clean architecture"],
+      ["alamofire", "urlsession", "rest api", "api integration", "networking"],
+      ["coredata", "realm", "sqlite", "userdefaults", "keychain"],
+      ["firebase", "apns", "push notification", "fcm"],
+      [
+        "combine",
+        "rxswift",
+        "async await",
+        "concurrency",
+        "grand central dispatch",
+        "gcd"
+      ],
+      ["spm", "cocoapods", "carthage", "swift package manager"],
+      ["app store", "testflight", "ipa", "app submission"],
+      ["unit test", "xctest", "ui testing", "mock"],
+      ["arkit", "corelocation", "mapkit", "avfoundation", "coreml"],
+      ["human interface guidelines", "hig", "ui", "ux", "animations"],
+      ["git", "github", "version control"]
+    ]
   },
 
   "cybersecurity": {
     "core": [
-      ["cybersecurity"],
-      ["network security"],
-      ["penetration testing"],
-      ["ethical hacking"]
+      ["cybersecurity", "cyber security", "information security", "infosec"],
+      ["network security", "network defense", "firewall", "ids", "ips"],
+      [
+        "penetration testing",
+        "pentest",
+        "pen testing",
+        "ethical hacking",
+        "red team"
+      ],
+      ["vulnerability assessment", "vulnerability management", "cve", "cvss"]
     ],
     "secondary": [
-      ["cryptography"],
-      ["firewalls"],
-      ["kali linux"],
-      ["metasploit"],
-      ["owasp"],
-      ["threat analysis"]
+      [
+        "cryptography",
+        "encryption",
+        "aes",
+        "rsa",
+        "tls",
+        "ssl",
+        "pki",
+        "hashing"
+      ],
+      ["kali linux", "parrot os", "linux", "bash"],
+      [
+        "metasploit",
+        "burp suite",
+        "nmap",
+        "wireshark",
+        "nessus",
+        "qualys",
+        "nikto"
+      ],
+      [
+        "owasp",
+        "owasp top 10",
+        "web application security",
+        "sql injection",
+        "xss",
+        "csrf"
+      ],
+      ["siem", "splunk", "elk", "log analysis", "threat detection"],
+      [
+        "incident response",
+        "forensics",
+        "digital forensics",
+        "malware analysis"
+      ],
+      ["cloud security", "aws security", "iam", "zero trust", "devsecops"],
+      ["compliance", "iso 27001", "gdpr", "hipaa", "pci dss", "soc 2"],
+      ["threat modeling", "threat intelligence", "osint"],
+      ["blue team", "soc", "security operations", "monitoring"],
+      ["python", "scripting", "automation"],
+      ["active directory", "ldap", "identity management", "pam"],
+      ["social engineering", "phishing", "security awareness"],
+      ["docker", "container security", "kubernetes security"]
+    ]
+  },
+
+  "qa_engineer": {
+    "core": [
+      ["testing", "qa", "quality assurance", "quality engineering"],
+      ["manual testing", "automated testing", "test automation", "automation"],
+      [
+        "test cases",
+        "test plan",
+        "test strategy",
+        "test design",
+        "test scenarios"
+      ],
+      ["bug reporting", "defect tracking", "issue tracking", "bug tracking"]
+    ],
+    "secondary": [
+      ["selenium", "playwright", "cypress", "puppeteer", "webdriver"],
+      ["jest", "pytest", "junit", "testng", "mocha", "chai", "jasmine"],
+      ["jira", "bugzilla", "testrail", "zephyr", "qtest"],
+      ["api testing", "postman", "rest assured", "karate", "insomnia"],
+      [
+        "regression testing",
+        "smoke testing",
+        "sanity testing",
+        "exploratory testing"
+      ],
+      [
+        "performance testing",
+        "load testing",
+        "stress testing",
+        "jmeter",
+        "gatling",
+        "k6",
+        "locust"
+      ],
+      ["mobile testing", "appium", "espresso", "xcuitest"],
+      ["bdd", "tdd", "cucumber", "gherkin", "behave"],
+      ["ci cd", "jenkins", "github actions", "continuous testing"],
+      ["sql", "database testing", "data validation"],
+      ["agile", "scrum", "sprint", "test management"],
+      ["python", "java", "javascript", "scripting"],
+      ["accessibility testing", "security testing", "usability testing"],
+      ["git", "github", "version control"]
+    ]
+  },
+
+  "product_manager": {
+    "core": [
+      ["product management", "product manager", "pm"],
+      ["roadmap", "product roadmap", "product strategy", "product vision"],
+      [
+        "user stories",
+        "requirements",
+        "prd",
+        "product requirements",
+        "specifications",
+        "brd"
+      ],
+      ["stakeholder management", "stakeholder", "cross functional"],
+      ["agile", "scrum", "kanban", "sprint", "backlog", "grooming"]
+    ],
+    "secondary": [
+      [
+        "jira",
+        "confluence",
+        "notion",
+        "productboard",
+        "aha",
+        "asana",
+        "trello"
+      ],
+      [
+        "kpi",
+        "metrics",
+        "okr",
+        "north star metric",
+        "success metrics",
+        "data driven"
+      ],
+      [
+        "market research",
+        "competitive analysis",
+        "user research",
+        "customer interviews"
+      ],
+      ["prioritization", "rice", "moscow", "kano", "value vs effort"],
+      [
+        "a b testing",
+        "experiment",
+        "hypothesis",
+        "mvp",
+        "minimum viable product"
+      ],
+      ["go to market", "gtm", "product launch", "release planning"],
+      ["wireframes", "prototypes", "figma", "product design", "ux"],
+      ["customer discovery", "problem validation", "user feedback", "nps"],
+      ["analytics", "google analytics", "mixpanel", "amplitude", "looker"],
+      ["revenue", "monetization", "pricing", "business model"],
+      ["sql", "data analysis", "excel"],
+      ["presentation", "communication", "leadership", "vision"],
+      ["api", "technical", "engineering collaboration"],
+      ["saas", "b2b", "b2c", "marketplace", "platform"]
+    ]
+  },
+
+  "ui_ux_designer": {
+    "core": [
+      [
+        "ui design",
+        "ux design",
+        "ui ux",
+        "user interface",
+        "user experience",
+        "product design"
+      ],
+      ["figma", "sketch", "adobe xd", "invision", "framer"],
+      ["wireframes", "wireframing", "prototypes", "prototyping", "mockups"],
+      ["user research", "usability testing", "user testing", "ux research"],
+      [
+        "design systems",
+        "design system",
+        "component library",
+        "style guide",
+        "atomic design"
+      ]
+    ],
+    "secondary": [
+      [
+        "information architecture",
+        "ia",
+        "sitemap",
+        "user flow",
+        "user journey",
+        "task flow"
+      ],
+      [
+        "interaction design",
+        "ixd",
+        "microinteractions",
+        "animation",
+        "motion design"
+      ],
+      ["accessibility", "wcag", "inclusive design", "a11y"],
+      ["css", "html", "frontend", "web design"],
+      ["photoshop", "illustrator", "after effects", "creative suite", "adobe"],
+      [
+        "visual design",
+        "typography",
+        "color theory",
+        "grid",
+        "layout",
+        "branding"
+      ],
+      ["heuristic evaluation", "cognitive walkthrough", "usability audit"],
+      [
+        "persona",
+        "empathy map",
+        "journey map",
+        "affinity diagram",
+        "card sorting"
+      ],
+      ["a b testing", "multivariate testing", "data driven design"],
+      [
+        "mobile design",
+        "responsive design",
+        "ios design",
+        "android design",
+        "hig",
+        "material design"
+      ],
+      ["zeroheight", "storybook", "zeplin", "abstract"],
+      ["agile", "design sprint", "lean ux", "scrum"],
+      ["survey", "interview", "focus group", "research methodology"],
+      ["conversion rate", "engagement", "retention", "metrics"]
+    ]
+  },
+
+  "blockchain": {
+    "core": [
+      ["blockchain", "blockchain development", "distributed ledger"],
+      ["solidity", "rust", "vyper", "move"],
+      ["smart contracts", "smart contract development"],
+      ["ethereum", "web3", "web 3", "dapp", "decentralized application"]
+    ],
+    "secondary": [
+      [
+        "defi",
+        "decentralized finance",
+        "amm",
+        "liquidity pool",
+        "yield farming",
+        "staking"
+      ],
+      ["nft", "erc721", "erc1155", "token", "erc20", "tokenomics"],
+      ["hardhat", "truffle", "foundry", "brownie", "remix"],
+      ["ipfs", "arweave", "decentralized storage"],
+      ["cryptography", "hash", "merkle tree", "zero knowledge", "zk proof"],
+      [
+        "consensus mechanism",
+        "proof of work",
+        "pow",
+        "proof of stake",
+        "pos",
+        "pbft"
+      ],
+      ["layer 2", "l2", "rollup", "optimism", "arbitrum", "polygon", "zksync"],
+      [
+        "solana",
+        "polkadot",
+        "binance smart chain",
+        "bsc",
+        "avalanche",
+        "cosmos",
+        "near"
+      ],
+      ["metamask", "wallet", "walletconnect", "web3.js", "ethers.js"],
+      ["dao", "governance", "multisig", "gnosis safe"],
+      ["audit", "security", "reentrancy", "smart contract security"],
+      ["javascript", "typescript", "python", "node"],
+      ["react", "nextjs", "frontend", "dapp frontend"],
+      ["gas optimization", "solidity optimization", "evm"]
+    ]
+  },
+
+  "embedded_systems": {
+    "core": [
+      [
+        "embedded systems",
+        "embedded software",
+        "embedded development",
+        "firmware"
+      ],
+      ["c", "c++", "embedded c"],
+      [
+        "microcontroller",
+        "mcu",
+        "arduino",
+        "raspberry pi",
+        "stm32",
+        "esp32",
+        "avr",
+        "pic",
+        "arm"
+      ],
+      ["rtos", "freertos", "zephyr", "real time operating system", "real-time"]
+    ],
+    "secondary": [
+      [
+        "i2c",
+        "spi",
+        "uart",
+        "usb",
+        "can bus",
+        "modbus",
+        "serial communication",
+        "protocol"
+      ],
+      ["assembly", "asm", "arm assembly", "x86"],
+      [
+        "pcb design",
+        "kicad",
+        "altium",
+        "eagle",
+        "schematic",
+        "hardware design"
+      ],
+      [
+        "iot",
+        "internet of things",
+        "mqtt",
+        "coap",
+        "lorawan",
+        "zigbee",
+        "bluetooth",
+        "ble",
+        "wifi"
+      ],
+      [
+        "linux kernel",
+        "linux driver",
+        "device driver",
+        "kernel module",
+        "yocto",
+        "buildroot"
+      ],
+      ["debugging", "jtag", "swd", "oscilloscope", "logic analyzer", "gdb"],
+      ["power management", "low power", "sleep mode", "battery optimization"],
+      ["bootloader", "u-boot", "flash memory", "eeprom", "nvs"],
+      ["cmake", "makefile", "build system", "cross compilation", "toolchain"],
+      ["python", "scripting", "testing", "automation"],
+      ["git", "version control"],
+      ["dsp", "signal processing", "adc", "dac", "pwm"],
+      ["safety", "iso 26262", "iec 61508", "functional safety", "misra"],
+      ["automotive", "aerospace", "medical device", "industrial"]
+    ]
+  },
+
+  "data_engineer": {
+    "core": [
+      ["data engineering", "data pipeline", "etl", "elt", "data integration"],
+      [
+        "sql",
+        "postgresql",
+        "mysql",
+        "bigquery",
+        "snowflake",
+        "redshift",
+        "hive"
+      ],
+      ["python", "scala", "java"],
+      ["spark", "pyspark", "apache spark", "hadoop", "big data"],
+      [
+        "airflow",
+        "apache airflow",
+        "luigi",
+        "prefect",
+        "dagster",
+        "workflow orchestration"
+      ]
+    ],
+    "secondary": [
+      [
+        "kafka",
+        "apache kafka",
+        "kinesis",
+        "pubsub",
+        "event streaming",
+        "streaming"
+      ],
+      ["dbt", "data build tool", "data modeling", "data transformation"],
+      [
+        "data warehouse",
+        "data lake",
+        "data lakehouse",
+        "delta lake",
+        "iceberg",
+        "hudi"
+      ],
+      ["aws", "azure", "gcp", "cloud", "s3", "glue", "databricks", "emr"],
+      ["docker", "kubernetes", "containerization"],
+      ["pandas", "numpy", "data processing"],
+      ["nosql", "mongodb", "cassandra", "dynamodb", "hbase"],
+      [
+        "data quality",
+        "great expectations",
+        "data validation",
+        "data governance"
+      ],
+      ["ci cd", "devops", "automation", "git"],
+      ["tableau", "power bi", "looker", "data visualization"],
+      ["schema design", "data modeling", "star schema", "snowflake schema"],
+      ["rest api", "graphql", "api integration"],
+      ["flink", "storm", "real time processing", "batch processing"]
+    ]
+  },
+
+  "ml_ops": {
+    "core": [
+      ["mlops", "ml ops", "machine learning operations", "ml engineering"],
+      [
+        "model deployment",
+        "model serving",
+        "model monitoring",
+        "production ml"
+      ],
+      ["docker", "kubernetes", "containerization", "k8s"],
+      [
+        "ci cd",
+        "cicd",
+        "continuous integration",
+        "continuous delivery",
+        "ml pipeline"
+      ],
+      ["python"]
+    ],
+    "secondary": [
+      [
+        "mlflow",
+        "wandb",
+        "weights and biases",
+        "neptune",
+        "experiment tracking",
+        "model registry"
+      ],
+      ["kubeflow", "sagemaker", "vertex ai", "azure ml", "ml platform"],
+      [
+        "airflow",
+        "prefect",
+        "dagster",
+        "orchestration",
+        "pipeline orchestration"
+      ],
+      ["fastapi", "flask", "torchserve", "triton", "model serving framework"],
+      [
+        "prometheus",
+        "grafana",
+        "monitoring",
+        "logging",
+        "alerting",
+        "observability"
+      ],
+      ["terraform", "infrastructure as code", "iac", "cloud infrastructure"],
+      ["aws", "azure", "gcp", "cloud"],
+      [
+        "pytorch",
+        "tensorflow",
+        "model optimization",
+        "onnx",
+        "quantization",
+        "pruning"
+      ],
+      ["feature store", "feast", "tecton", "feature engineering"],
+      ["data drift", "model drift", "data quality", "evidently"],
+      ["kafka", "streaming", "real time inference"],
+      ["spark", "data pipeline"],
+      ["git", "github", "version control", "dvc"],
+      ["a b testing", "shadow deployment", "canary deployment", "blue green"]
+    ]
+  },
+
+  "game_developer": {
+    "core": [
+      ["game development", "game developer", "game programming"],
+      ["unity", "unreal engine", "unreal", "godot", "pygame"],
+      ["c#", "c++", "gdscript", "blueprint"],
+      ["3d", "2d", "game design", "level design"]
+    ],
+    "secondary": [
+      ["physics engine", "collision detection", "rigidbody", "raycasting"],
+      ["shader", "hlsl", "glsl", "shaderlab", "visual effects", "vfx"],
+      ["animation", "character animation", "rigging", "blend tree", "animator"],
+      [
+        "multiplayer",
+        "networking",
+        "photon",
+        "mirror",
+        "dedicated server",
+        "udp",
+        "tcp"
+      ],
+      ["blender", "maya", "3ds max", "asset creation", "3d modeling"],
+      [
+        "ai",
+        "game ai",
+        "pathfinding",
+        "a star",
+        "navmesh",
+        "behavior tree",
+        "fsm"
+      ],
+      ["mobile game", "ios", "android", "cross platform"],
+      [
+        "vr",
+        "ar",
+        "xr",
+        "virtual reality",
+        "augmented reality",
+        "oculus",
+        "openxr"
+      ],
+      ["profiling", "optimization", "performance", "draw calls"],
+      ["git", "perforce", "version control"],
+      ["steam", "app store", "google play", "publishing"],
+      ["monetization", "iap", "in app purchase", "ads"],
+      ["narrative design", "dialogue system", "quest system"]
+    ]
+  },
+
+  "scrum_master": {
+    "core": [
+      ["scrum master", "scrum", "agile coach", "agile"],
+      [
+        "sprint",
+        "sprint planning",
+        "sprint review",
+        "sprint retrospective",
+        "daily standup"
+      ],
+      ["backlog", "backlog grooming", "backlog refinement", "product backlog"],
+      ["facilitation", "coaching", "servant leadership", "team facilitation"]
+    ],
+    "secondary": [
+      ["kanban", "lean", "safe", "scaled agile", "less", "nexus"],
+      ["jira", "confluence", "trello", "azure devops", "notion"],
+      ["velocity", "burndown", "burnup", "cumulative flow", "metrics"],
+      ["impediment removal", "blocker", "risk management"],
+      ["stakeholder", "stakeholder management", "communication"],
+      [
+        "csm",
+        "psm",
+        "certified scrum master",
+        "scrum certification",
+        "safe agilist"
+      ],
+      ["cross functional", "self organizing", "team building"],
+      ["release planning", "pi planning", "program increment"],
+      ["continuous improvement", "kaizen", "retrospective techniques"],
+      ["product owner", "po collaboration", "definition of done", "dod"],
+      ["estimation", "story points", "planning poker", "t-shirt sizing"]
     ]
   }
 }

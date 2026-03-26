@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cvz — ATS Resume Analyzer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Syne:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0a0a0a;
+        --surface: #111111;
+        --border: #1e1e1e;
+        --border-bright: #2e2e2e;
+        --cyan: #00e5cc;
+        --cyan-dim: #00e5cc22;
+        --yellow: #f5c542;
+        --red: #ff4f4f;
+        --green: #3ddc84;
+        --text: #e8e8e8;
+        --text-dim: #666;
+        --text-mid: #999;
+        --font-display: "Syne", sans-serif;
+        --font-mono: "DM Mono", monospace;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-mono);
+        overflow-x: hidden;
+        cursor: none;
+      }
+
+      /* Custom cursor */
+      .cursor {
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: var(--cyan);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9999;
+        transition: transform 0.1s ease;
+        mix-blend-mode: difference;
+      }
+      .cursor-ring {
+        position: fixed;
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--cyan);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 9998;
+        transition:
+          transform 0.15s ease,
+          width 0.2s,
+          height 0.2s;
+        transform: translate(-50%, -50%);
+        opacity: 0.5;
+      }
+
+      /* Noise overlay */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 1000;
+        opacity: 0.4;
+      }
+
+      /* Grid background */
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--border) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border) 1px, transparent 1px);
+        background-size: 48px 48px;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.4;
+      }
+
+      /* ─── NAV ─── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 48px;
+        border-bottom: 1px solid var(--border);
+        background: rgba(10, 10, 10, 0.85);
+        backdrop-filter: blur(12px);
+      }
+
+      .nav-logo {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 1.3rem;
+        color: var(--cyan);
+        letter-spacing: -0.02em;
+      }
+      .nav-logo span {
+        color: var(--text-dim);
+        font-weight: 400;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--text-mid);
+      }
+      .nav-links a {
+        color: inherit;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--cyan);
+      }
+
+      .nav-badge {
+        font-size: 0.7rem;
+        border: 1px solid var(--border-bright);
+        padding: 4px 12px;
+        border-radius: 2px;
+        color: var(--text-mid);
+        letter-spacing: 0.06em;
+      }
+
+      /* ─── HERO ─── */
+      .hero {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 120px 48px 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        opacity: 0;
+        animation: fadeUp 0.6s ease 0.2s forwards;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        display: block;
+        width: 32px;
+        height: 1px;
+        background: var(--cyan);
+      }
+
+      .hero-title {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(3.5rem, 9vw, 7.5rem);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        margin-bottom: 32px;
+        opacity: 0;
+        animation: fadeUp 0.7s ease 0.35s forwards;
+      }
+      .hero-title .accent {
+        color: var(--cyan);
+      }
+      .hero-title .dim {
+        color: var(--text-dim);
+      }
+
+      .hero-sub {
+        font-size: 1rem;
+        color: var(--text-mid);
+        max-width: 480px;
+        line-height: 1.7;
+        margin-bottom: 48px;
+        opacity: 0;
+        animation: fadeUp 0.7s ease 0.5s forwards;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: fadeUp 0.7s ease 0.65s forwards;
+      }
+
+      .btn {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
+        padding: 12px 24px;
+        border-radius: 2px;
+        cursor: none;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .btn-primary {
+        background: var(--cyan);
+        color: #000;
+        border: 1px solid var(--cyan);
+        font-weight: 500;
+      }
+      .btn-primary:hover {
+        background: transparent;
+        color: var(--cyan);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--text-mid);
+        border: 1px solid var(--border-bright);
+      }
+      .btn-ghost:hover {
+        border-color: var(--cyan);
+        color: var(--cyan);
+      }
+
+      /* ─── TERMINAL MOCKUP ─── */
+      .terminal-wrap {
+        position: absolute;
+        right: 48px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 480px;
+        opacity: 0;
+        animation: fadeLeft 0.8s ease 0.8s forwards;
+      }
+
+      @media (max-width: 900px) {
+        .terminal-wrap {
+          display: none;
+        }
+      }
+
+      .terminal {
+        background: var(--surface);
+        border: 1px solid var(--border-bright);
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow:
+          0 32px 80px rgba(0, 0, 0, 0.6),
+          0 0 0 1px rgba(255, 255, 255, 0.03);
+      }
+      .terminal-bar {
+        background: #1a1a1a;
+        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 1px solid var(--border);
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .dot-red {
+        background: #ff5f57;
+      }
+      .dot-yellow {
+        background: #febc2e;
+      }
+      .dot-green {
+        background: #28c840;
+      }
+      .terminal-title {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 0.7rem;
+        color: var(--text-dim);
+        letter-spacing: 0.05em;
+      }
+      .terminal-body {
+        padding: 20px;
+        font-size: 0.78rem;
+        line-height: 1.8;
+      }
+      .t-prompt {
+        color: var(--cyan);
+      }
+      .t-cmd {
+        color: var(--text);
+      }
+      .t-dim {
+        color: var(--text-dim);
+      }
+      .t-label {
+        color: var(--text-mid);
+      }
+      .t-green {
+        color: var(--green);
+      }
+      .t-yellow {
+        color: var(--yellow);
+      }
+      .t-red {
+        color: var(--red);
+      }
+      .t-cyan {
+        color: var(--cyan);
+      }
+      .t-border {
+        border-top: 1px solid var(--border);
+        margin: 8px 0;
+      }
+
+      .bar-track {
+        display: inline-block;
+        font-size: 0.72rem;
+        letter-spacing: 0;
+      }
+
+      /* Blinking cursor */
+      .blink {
+        display: inline-block;
+        width: 7px;
+        height: 13px;
+        background: var(--cyan);
+        vertical-align: middle;
+        animation: blink 1s step-end infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* ─── STATS ROW ─── */
+      .stats {
+        position: relative;
+        z-index: 1;
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .stat {
+        padding: 40px 48px;
+        border-right: 1px solid var(--border);
+        opacity: 0;
+        animation: fadeUp 0.6s ease forwards;
+      }
+      .stat:last-child {
+        border-right: none;
+      }
+      .stat:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .stat:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .stat:nth-child(3) {
+        animation-delay: 0.3s;
+      }
+      .stat:nth-child(4) {
+        animation-delay: 0.4s;
+      }
+      .stat-num {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 2.5rem;
+        color: var(--cyan);
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .stat-label {
+        font-size: 0.7rem;
+        color: var(--text-dim);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      /* ─── COMMANDS SECTION ─── */
+      .section {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 100px 48px;
+      }
+
+      .section-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--cyan);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .section-label::before {
+        content: "";
+        width: 24px;
+        height: 1px;
+        background: var(--cyan);
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        margin-bottom: 60px;
+      }
+
+      .commands-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+      }
+
+      .cmd-card {
+        background: var(--bg);
+        padding: 32px;
+        transition: background 0.2s;
+        position: relative;
+        overflow: hidden;
+      }
+      .cmd-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: var(--cyan-dim);
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .cmd-card:hover {
+        background: var(--surface);
+      }
+      .cmd-card:hover::after {
+        opacity: 1;
+      }
+
+      .cmd-name {
+        font-size: 0.82rem;
+        color: var(--cyan);
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .cmd-name::before {
+        content: "$";
+        color: var(--text-dim);
+      }
+
+      .cmd-desc {
+        font-size: 0.78rem;
+        color: var(--text-mid);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+
+      .cmd-example {
+        font-size: 0.7rem;
+        color: var(--text-dim);
+        background: var(--border);
+        padding: 8px 12px;
+        border-radius: 2px;
+        border-left: 2px solid var(--border-bright);
+      }
+
+      /* ─── SCORING SECTION ─── */
+      .scoring-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      @media (max-width: 768px) {
+        .scoring-layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .scoring-text p {
+        font-size: 0.85rem;
+        color: var(--text-mid);
+        line-height: 1.8;
+        margin-bottom: 32px;
+      }
+
+      .score-breakdown {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .score-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .score-row-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.75rem;
+      }
+      .score-row-label {
+        color: var(--text-mid);
+      }
+      .score-row-weight {
+        color: var(--cyan);
+      }
+
+      .score-bar-bg {
+        height: 4px;
+        background: var(--border-bright);
+        border-radius: 2px;
+        overflow: hidden;
+      }
+      .score-bar-fill {
+        height: 100%;
+        border-radius: 2px;
+        animation: growBar 1.2s ease forwards;
+        transform-origin: left;
+        transform: scaleX(0);
+      }
+      @keyframes growBar {
+        to {
+          transform: scaleX(1);
+        }
+      }
+
+      .threshold-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 8px;
+      }
+      .threshold {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.78rem;
+      }
+      .threshold-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+      .threshold-score {
+        color: var(--text-dim);
+        margin-left: auto;
+      }
+
+      /* ─── INSTALL ─── */
+      .install-box {
+        background: var(--surface);
+        border: 1px solid var(--border-bright);
+        border-radius: 4px;
+        overflow: hidden;
+        max-width: 600px;
+      }
+      .install-box-header {
+        padding: 10px 20px;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.68rem;
+        color: var(--text-dim);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .copy-hint {
+        font-size: 0.65rem;
+        color: var(--text-dim);
+        cursor: none;
+        transition: color 0.2s;
+      }
+      .copy-hint:hover {
+        color: var(--cyan);
+      }
+
+      .install-steps {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .install-step {
+        display: flex;
+        gap: 16px;
+        align-items: baseline;
+        font-size: 0.8rem;
+        line-height: 1.8;
+      }
+      .step-num {
+        color: var(--text-dim);
+        flex-shrink: 0;
+        width: 16px;
+        font-size: 0.65rem;
+      }
+      .step-cmd {
+        color: var(--green);
+      }
+      .step-comment {
+        color: var(--text-dim);
+        font-style: italic;
+      }
+
+      /* ─── FOOTER ─── */
+      footer {
+        position: relative;
+        z-index: 1;
+        border-top: 1px solid var(--border);
+        padding: 40px 48px;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: gap;
+        gap: 16px;
+      }
+      .footer-left {
+        font-size: 0.72rem;
+        color: var(--text-dim);
+      }
+      .footer-left strong {
+        color: var(--cyan);
+        font-weight: 500;
+      }
+      .footer-right {
+        font-size: 0.7rem;
+        color: var(--text-dim);
+        letter-spacing: 0.05em;
+      }
+
+      /* ─── ANIMATIONS ─── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes fadeLeft {
+        from {
+          opacity: 0;
+          transform: translateX(30px) translateY(-50%);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0) translateY(-50%);
+        }
+      }
+
+      /* ─── SCROLLED REVEAL ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s ease,
+          transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--border-bright);
+        border-radius: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- NAV -->
+    <nav>
+      <div class="nav-logo">cvz<span> /</span></div>
+      <ul class="nav-links">
+        <li><a href="#commands">Commands</a></li>
+        <li><a href="#scoring">Scoring</a></li>
+        <li><a href="#install">Install</a></li>
+      </ul>
+      <div class="nav-badge">v0.1.2 — PyPI</div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-eyebrow">ATS Resume Analyzer — CLI Tool</div>
+      <h1 class="hero-title">
+        Score your<br />
+        resume.<br />
+        <span class="accent">Beat the</span> <span class="dim">ATS.</span>
+      </h1>
+      <p class="hero-sub">
+        A fast command-line tool that scores resumes against job roles using
+        keyword matching, semantic similarity, and structural analysis. Supports
+        PDF, DOCX, and TXT.
+      </p>
+      <div class="hero-actions">
+        <a href="#install" class="btn btn-primary">→ pip install cvz</a>
+        <a href="#commands" class="btn btn-ghost">View Commands</a>
+      </div>
+
+      <!-- Terminal -->
+      <div class="terminal-wrap">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="dot dot-red"></div>
+            <div class="dot dot-yellow"></div>
+            <div class="dot dot-green"></div>
+            <div class="terminal-title">cvz — analyze</div>
+          </div>
+          <div class="terminal-body">
+            <div>
+              <span class="t-prompt">λ </span
+              ><span class="t-cmd">cvz analyze resume.pdf --role backend</span>
+            </div>
+            <div class="t-dim">╭─────────────────────────────╮</div>
+            <div class="t-dim">│ CVZ — ATS Resume Analyzer │</div>
+            <div class="t-dim">╰─────────────────────────────╯</div>
+            <br />
+            <div>
+              <span class="t-label">Keyword </span>
+              <span class="bar-track"
+                ><span class="t-green">████████████████</span
+                ><span class="t-dim">░░░░</span></span
+              >
+              <span class="t-green"> 78.4%</span>
+            </div>
+            <div>
+              <span class="t-label">Semantic </span>
+              <span class="bar-track"
+                ><span class="t-yellow">█████████████</span
+                ><span class="t-dim">░░░░░░░</span></span
+              >
+              <span class="t-yellow"> 64.1%</span>
+            </div>
+            <div>
+              <span class="t-label">Structure</span>
+              <span class="bar-track"
+                ><span class="t-green">███████████████░</span
+                ><span class="t-dim">░░░░</span></span
+              >
+              <span class="t-green"> 81.0%</span>
+            </div>
+            <div class="t-border"></div>
+            <div>
+              <span class="t-label">Final </span>
+              <span class="bar-track"
+                ><span class="t-cyan">████████████████</span
+                ><span class="t-dim">░░░░</span></span
+              >
+              <span class="t-cyan"> <strong>74.9%</strong></span>
+            </div>
+            <br />
+            <div class="t-yellow">
+              ⚠️ Decent match. A few improvements could boost your score.
+            </div>
+            <br />
+            <div class="t-dim">Missing Skills (top 5)</div>
+            <div class="t-red">✗ <span class="t-dim">kubernetes</span></div>
+            <div class="t-red">✗ <span class="t-dim">redis</span></div>
+            <div class="t-red">✗ <span class="t-dim">grpc</span></div>
+            <br />
+            <div>
+              <span class="t-prompt">λ </span><span class="blink"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat reveal">
+        <div class="stat-num">20+</div>
+        <div class="stat-label">Supported Roles</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Scoring Engines</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">3</div>
+        <div class="stat-label">File Formats</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Cloud / No Backend</div>
+      </div>
+    </div>
+
+    <!-- COMMANDS -->
+    <section class="section" id="commands">
+      <div class="section-label">Commands</div>
+      <h2 class="section-title reveal">
+        Everything you need,<br />in the terminal.
+      </h2>
+
+      <div class="commands-grid reveal">
+        <div class="cmd-card">
+          <div class="cmd-name">cvz analyze</div>
+          <div class="cmd-desc">
+            Score a resume against a specific role or custom job description.
+            Auto-detects the best role if none is provided.
+          </div>
+          <div class="cmd-example">cvz analyze resume.pdf --role backend</div>
+        </div>
+        <div class="cmd-card">
+          <div class="cmd-name">cvz gap</div>
+          <div class="cmd-desc">
+            Show exactly which core skills are present and which are missing for
+            a given role. Export as JSON.
+          </div>
+          <div class="cmd-example">
+            cvz gap resume.pdf --role machine_learning
+          </div>
+        </div>
+        <div class="cmd-card">
+          <div class="cmd-name">cvz compare</div>
+          <div class="cmd-desc">
+            Rank multiple resumes side by side. Useful for hiring or
+            self-benchmarking across different versions.
+          </div>
+          <div class="cmd-example">cvz compare r1.pdf r2.pdf r3.pdf</div>
+        </div>
+        <div class="cmd-card">
+          <div class="cmd-name">cvz suggest-role</div>
+          <div class="cmd-desc">
+            Auto-detect the top matching roles from the resume without
+            specifying one. Shows ranked results.
+          </div>
+          <div class="cmd-example">cvz suggest-role resume.pdf --top 10</div>
+        </div>
+        <div class="cmd-card">
+          <div class="cmd-name">cvz roles</div>
+          <div class="cmd-desc">
+            List all supported roles. From backend to blockchain, devops to
+            UI/UX — 20+ roles available.
+          </div>
+          <div class="cmd-example">cvz roles</div>
+        </div>
+        <div class="cmd-card">
+          <div class="cmd-name">--export</div>
+          <div class="cmd-desc">
+            Export any report to a JSON file. Works with analyze, gap, and
+            compare commands.
+          </div>
+          <div class="cmd-example">
+            cvz analyze resume.pdf --export report.json
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCORING -->
+    <section
+      class="section"
+      id="scoring"
+      style="border-top: 1px solid var(--border)"
+    >
+      <div class="section-label">How It Works</div>
+      <h2 class="section-title reveal">
+        Three engines.<br />One honest score.
+      </h2>
+
+      <div class="scoring-layout">
+        <div class="scoring-text reveal">
+          <p>
+            cvz doesn't rely on a single metric. Every resume is evaluated
+            across three independent dimensions — keyword coverage, semantic
+            similarity via spaCy word vectors, and structural completeness.
+          </p>
+          <p>
+            The final score is a weighted average. Semantic scoring is
+            automatically gated — if keyword coverage is too weak, semantic
+            weight is reduced to prevent vector-level noise from inflating the
+            result.
+          </p>
+
+          <div class="threshold-list">
+            <div class="threshold">
+              <div class="threshold-dot" style="background: var(--green)"></div>
+              <span>Great match</span>
+              <span class="threshold-score">≥ 75%</span>
+            </div>
+            <div class="threshold">
+              <div
+                class="threshold-dot"
+                style="background: var(--yellow)"
+              ></div>
+              <span>Decent match</span>
+              <span class="threshold-score">50 – 74%</span>
+            </div>
+            <div class="threshold">
+              <div class="threshold-dot" style="background: var(--red)"></div>
+              <span>Low match</span>
+              <span class="threshold-score">&lt; 50%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="score-breakdown reveal">
+          <div class="score-row">
+            <div class="score-row-header">
+              <span class="score-row-label">Keyword Matching</span>
+              <span class="score-row-weight">50%</span>
+            </div>
+            <div class="score-bar-bg">
+              <div
+                class="score-bar-fill"
+                style="
+                  width: 50%;
+                  background: var(--cyan);
+                  animation-delay: 0.2s;
+                "
+              ></div>
+            </div>
+            <div
+              style="
+                font-size: 0.68rem;
+                color: var(--text-dim);
+                margin-top: 4px;
+              "
+            >
+              Core (70pt) + Secondary (30pt) keyword groups. Whole-word
+              matching.
+            </div>
+          </div>
+          <div class="score-row">
+            <div class="score-row-header">
+              <span class="score-row-label">Semantic Similarity</span>
+              <span class="score-row-weight">30%</span>
+            </div>
+            <div class="score-bar-bg">
+              <div
+                class="score-bar-fill"
+                style="
+                  width: 30%;
+                  background: var(--yellow);
+                  animation-delay: 0.4s;
+                "
+              ></div>
+            </div>
+            <div
+              style="
+                font-size: 0.68rem;
+                color: var(--text-dim);
+                margin-top: 4px;
+              "
+            >
+              spaCy cosine similarity. Optional — falls back gracefully if model
+              is absent.
+            </div>
+          </div>
+          <div class="score-row">
+            <div class="score-row-header">
+              <span class="score-row-label">Structure Analysis</span>
+              <span class="score-row-weight">20%</span>
+            </div>
+            <div class="score-bar-bg">
+              <div
+                class="score-bar-fill"
+                style="
+                  width: 20%;
+                  background: var(--green);
+                  animation-delay: 0.6s;
+                "
+              ></div>
+            </div>
+            <div
+              style="
+                font-size: 0.68rem;
+                color: var(--text-dim);
+                margin-top: 4px;
+              "
+            >
+              Weighted section presence (Education, Experience, Skills…) +
+              resume length.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTALL -->
+    <section
+      class="section"
+      id="install"
+      style="border-top: 1px solid var(--border)"
+    >
+      <div class="section-label">Install</div>
+      <h2 class="section-title reveal">Up and running<br />in 60 seconds.</h2>
+
+      <div class="install-box reveal">
+        <div class="install-box-header">
+          <span>bash</span>
+          <span class="copy-hint">copy</span>
+        </div>
+        <div class="install-steps">
+          <div class="install-step">
+            <span class="step-num">1</span>
+            <span class="step-cmd">pip install cvz</span>
+          </div>
+          <div class="install-step">
+            <span class="step-num">2</span>
+            <span class="step-cmd"
+              >python -m spacy download en_core_web_md</span
+            >
+            <span class="step-comment"
+              >&nbsp;# optional, for semantic scoring</span
+            >
+          </div>
+          <div class="install-step">
+            <span class="step-num">3</span>
+            <span class="step-cmd">cvz analyze resume.pdf --role backend</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 24px; font-size: 0.75rem; color: var(--text-dim)">
+        Requires Python 3.9+ &nbsp;·&nbsp; PDF, DOCX, TXT supported
+        &nbsp;·&nbsp; No internet required at runtime
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-left">
+        Built by <strong>Anik Chand</strong> &nbsp;·&nbsp;
+        <strong>cvz</strong> — ATS Resume Analyzer
+      </div>
+      <div class="footer-right">pip install cvz</div>
+    </footer>
+
+    <script>
+      // Custom cursor
+      const cursor = document.getElementById("cursor");
+      const ring = document.getElementById("cursorRing");
+      let mx = 0,
+        my = 0,
+        rx = 0,
+        ry = 0;
+
+      document.addEventListener("mousemove", (e) => {
+        mx = e.clientX;
+        my = e.clientY;
+        cursor.style.left = mx - 4 + "px";
+        cursor.style.top = my - 4 + "px";
+      });
+
+      (function animRing() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + "px";
+        ring.style.top = ry + "px";
+        requestAnimationFrame(animRing);
+      })();
+
+      // Scroll reveal
+      const reveals = document.querySelectorAll(".reveal");
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.12 },
+      );
+      reveals.forEach((el) => obs.observe(el));
+
+      // Copy hint
+      document
+        .querySelector(".copy-hint")
+        .addEventListener("click", function () {
+          const lines = [...document.querySelectorAll(".step-cmd")]
+            .map((el) => el.textContent)
+            .join("\n");
+          navigator.clipboard.writeText(lines).then(() => {
+            this.textContent = "copied ✓";
+            setTimeout(() => (this.textContent = "copy"), 1800);
+          });
+        });
+    </script>
+  </body>
+</html>

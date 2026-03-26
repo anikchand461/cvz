@@ -1,6 +1,6 @@
 # cvz — ATS Resume Analyzer CLI
 
-A command-line tool that scores resumes against job roles using keyword matching, semantic similarity, and structural analysis. Supports PDF and DOCX files.
+A fast command-line tool that scores resumes against job roles using keyword matching, semantic similarity, and structural analysis. Supports PDF, DOCX, and TXT files.
 
 ---
 
@@ -20,11 +20,13 @@ pip install -e .
 
 > Requires Python 3.9+
 
-After installing, download the spaCy model for semantic scoring:
+Download the spaCy model for semantic scoring (recommended):
 
 ```bash
 python -m spacy download en_core_web_md
 ```
+
+> If not installed, semantic scoring is automatically skipped with a warning — all other features work normally.
 
 ---
 
@@ -48,28 +50,43 @@ cvz analyze resume.pdf
 cvz analyze resume.pdf --jd "python django rest api postgresql"
 ```
 
-### Suggest the best-fit role for a resume
+### Export the report to JSON
+
+```bash
+cvz analyze resume.pdf --role devops --export report.json
+```
+
+### Suggest the best-fit roles for a resume
 
 ```bash
 cvz suggest-role resume.pdf
+cvz suggest-role resume.pdf --top 10
 ```
 
-### Gap analysis — see what's missing for a role
+### Gap analysis — see strengths and missing skills
 
 ```bash
 cvz gap resume.pdf --role machine_learning
+cvz gap resume.pdf --role backend --export gap.json
 ```
 
 ### Compare multiple resumes
 
 ```bash
-cvz compare r1.pdf r2.pdf --role backend
+cvz compare r1.pdf r2.pdf r3.pdf
+cvz compare r1.pdf r2.pdf --role frontend --export compare.json
 ```
 
 ### List all supported roles
 
 ```bash
 cvz roles
+```
+
+### Show version
+
+```bash
+cvz --version
 ```
 
 ---
@@ -84,27 +101,41 @@ Each resume is scored across three dimensions:
 | Semantic  | 30%    | spaCy cosine similarity between resume and role keywords |
 | Structure | 20%    | Presence of standard sections + resume length            |
 
+Score thresholds:
+
+| Score  | Rating       |
+| ------ | ------------ |
+| >= 75% | Great match  |
+| 50-74% | Decent match |
+| < 50%  | Low match    |
+
 ---
 
 ## Supported Roles
 
-Built-in roles include:
+| Role               | Role                |
+| ------------------ | ------------------- |
+| `backend`          | `frontend`          |
+| `full_stack`       | `software_engineer` |
+| `data_scientist`   | `data_analyst`      |
+| `machine_learning` | `ai_engineer`       |
+| `devops`           | `cloud_engineer`    |
+| `android`          | `ios`               |
+| `cybersecurity`    | `qa_engineer`       |
+| `product_manager`  | `ui_ux_designer`    |
+| `blockchain`       | `embedded_systems`  |
 
-- `backend`
-- `frontend`
-- `full_stack`
-- `machine_learning`
-- `data_science`
-- _(run `cvz roles` for the full list)_
-
-Role keyword sets are defined in `src/cvscan/data/roles.json` and can be extended.
+Run `cvz roles` for the full list. Role keyword sets are defined in `src/cvscan/data/roles.json` and can be extended.
 
 ---
 
 ## Supported File Formats
 
-- `.pdf` — via `pdfplumber`
-- `.docx` — via `python-docx`
+| Format  | Parser                                    |
+| ------- | ----------------------------------------- |
+| `.pdf`  | `pdfplumber`                              |
+| `.docx` | `python-docx` (includes table extraction) |
+| `.txt`  | built-in                                  |
 
 ---
 
@@ -127,19 +158,20 @@ scikit-learn
 cvscan/
 ├── src/
 │   └── cvscan/
-│       ├── main.py              # CLI commands (Typer)
+│       ├── main.py                 # CLI commands (Typer)
 │       ├── data/
-│       │   └── roles.json       # Role keyword definitions
+│       │   └── roles.json          # Role keyword definitions
 │       ├── engines/
 │       │   ├── keyword_engine.py   # Keyword-based scoring
 │       │   ├── spacy_engine.py     # Semantic similarity scoring
 │       │   └── structure_engine.py # Resume structure scoring
 │       ├── parser/
-│       │   ├── pdf_parser.py    # PDF text extraction
-│       │   └── docx_parser.py   # DOCX text extraction
+│       │   ├── pdf_parser.py       # PDF text extraction
+│       │   └── docx_parser.py      # DOCX text extraction (incl. tables)
 │       └── utils/
-│           ├── loader.py        # File + role data loading
-│           └── cleaner.py       # Text normalization
+│           ├── loader.py           # File + role data loading
+│           ├── cleaner.py          # Text normalisation
+│           └── scorer.py           # Shared scoring helpers
 ├── pyproject.toml
 └── requirements.txt
 ```
