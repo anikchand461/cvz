@@ -2,16 +2,47 @@
 engines/spacy_engine.py
 Semantic similarity scoring using spaCy word vectors.
 
-en_core_web_md is downloaded automatically at install time (see setup.py),
-so no runtime prompts or download logic is needed here.
-Falls back to 0 gracefully if the model is somehow unavailable.
-Model is loaded lazily — only when spacy_score() is first called.
+en_core_web_md is downloaded automatically on the very first cvz run
+if not already present — no prompts, no manual steps needed.
+Model is loaded lazily; importing this module does NOT slow startup.
 """
 
+import subprocess
+import sys
 import spacy
 
 _nlp = None
 _load_attempted = False
+
+
+def _ensure_model() -> bool:
+    """
+    Check if en_core_web_md is available; download it silently if not.
+    Returns True if a usable model is available after this call.
+    """
+    for model in ("en_core_web_md", "en_core_web_lg"):
+        try:
+            spacy.load(model)
+            return True
+        except OSError:
+            continue
+
+    # Not found — download silently
+    print("⬇  First run: downloading spaCy model en_core_web_md (~43 MB)...")
+    result = subprocess.run(
+        [sys.executable, "-m", "spacy", "download", "en_core_web_md"],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    if result.returncode == 0:
+        print("✔  Model ready.\n")
+        return True
+
+    print(
+        "⚠  Auto-download failed. Run manually:\n"
+        "   python -m spacy download en_core_web_md\n"
+    )
+    return False
 
 
 def _load_model():
@@ -22,20 +53,20 @@ def _load_model():
         return _nlp
 
     _load_attempted = True
+    _ensure_model()
 
     for model in ("en_core_web_md", "en_core_web_lg", "en_core_web_sm"):
         try:
             _nlp = spacy.load(model)
             if model == "en_core_web_sm":
                 print(
-                    "Warning: Using en_core_web_sm — scores will be less accurate. "
+                    "Warning: Using en_core_web_sm — scores will be less accurate.\n"
                     "Run: python -m spacy download en_core_web_md"
                 )
             return _nlp
         except OSError:
             continue
 
-    print("Warning: No spaCy model found — semantic scoring disabled.")
     return None
 
 

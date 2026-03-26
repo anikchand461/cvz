@@ -35,8 +35,8 @@
         --grad2: linear-gradient(135deg, #00f5a0 0%, #38bdf8 50%, #a855f7 100%);
         --grad-text: linear-gradient(90deg, #00f5a0, #38bdf8 50%, #a855f7);
         --text: #f0f4ff;
-        --text-mid: #8892aa;
-        --text-dim: #454d66;
+        --text-mid: #9ba8c0;
+        --text-dim: #5a6380;
         --ff-display: "Cabinet Grotesk", sans-serif;
         --ff-serif: "Instrument Serif", serif;
         --ff-mono: "Geist Mono", monospace;
@@ -52,6 +52,7 @@
         font-family: var(--ff-mono);
         overflow-x: hidden;
         line-height: 1.6;
+        font-size: 16px;
       }
 
       /* mesh bg */
@@ -165,16 +166,16 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 48px;
-        height: 64px;
+        height: 68px;
         border-bottom: 1px solid var(--border);
-        background: rgba(6, 8, 15, 0.75);
+        background: rgba(6, 8, 15, 0.8);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
       }
       .nav-logo {
         font-family: var(--ff-display);
         font-weight: 900;
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         letter-spacing: -0.04em;
         text-decoration: none;
         background: var(--grad-text);
@@ -191,13 +192,13 @@
         display: inline-flex;
         align-items: center;
         gap: 7px;
-        padding: 7px 14px;
+        padding: 8px 16px;
         border-radius: 8px;
         border: 1px solid var(--border);
         color: var(--text-mid);
         text-decoration: none;
-        font-size: 0.72rem;
-        letter-spacing: 0.04em;
+        font-size: 0.82rem;
+        letter-spacing: 0.03em;
         font-family: var(--ff-mono);
         background: rgba(255, 255, 255, 0.03);
         transition: all 0.2s;
@@ -212,7 +213,7 @@
         gap: 8px;
       }
       .nav-version {
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         color: var(--text-dim);
         border: 1px solid var(--border);
         padding: 4px 10px;
@@ -232,7 +233,7 @@
         gap: 60px;
         max-width: 1280px;
         margin: 0 auto;
-        padding: 120px 48px 80px;
+        padding: 130px 48px 80px;
       }
       .hero-pill {
         display: inline-flex;
@@ -240,18 +241,18 @@
         gap: 8px;
         background: rgba(0, 245, 160, 0.08);
         border: 1px solid rgba(0, 245, 160, 0.2);
-        padding: 6px 14px;
+        padding: 7px 16px;
         border-radius: 20px;
-        font-size: 0.7rem;
+        font-size: 0.82rem;
         color: var(--emerald);
-        letter-spacing: 0.08em;
+        letter-spacing: 0.06em;
         margin-bottom: 28px;
         opacity: 0;
         animation: fadeUp 0.6s ease 0.1s forwards;
       }
       .pill-dot {
-        width: 6px;
-        height: 6px;
+        width: 7px;
+        height: 7px;
         background: var(--emerald);
         border-radius: 50%;
         animation: pulse 2s infinite;
@@ -296,7 +297,7 @@
       }
 
       .hero-desc {
-        font-size: 0.88rem;
+        font-size: 1rem;
         color: var(--text-mid);
         line-height: 1.75;
         max-width: 460px;
@@ -316,10 +317,10 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 12px 22px;
+        padding: 13px 24px;
         border-radius: 10px;
         font-family: var(--ff-mono);
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         font-weight: 500;
         text-decoration: none;
         letter-spacing: 0.02em;
@@ -381,8 +382,8 @@
         border-bottom: 1px solid var(--border);
       }
       .dot {
-        width: 11px;
-        height: 11px;
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
       }
       .dot-r {
@@ -396,14 +397,14 @@
       }
       .t-bar-title {
         margin: 0 auto;
-        font-size: 0.68rem;
+        font-size: 0.78rem;
         color: var(--text-dim);
         letter-spacing: 0.06em;
       }
       .terminal-body {
         padding: 22px 24px;
-        font-size: 0.78rem;
-        line-height: 2;
+        font-size: 0.86rem;
+        line-height: 2.1;
         font-family: var(--ff-mono);
       }
       .t-p {
@@ -444,13 +445,13 @@
         gap: 6px;
       }
       .t-bar {
-        font-size: 0.72rem;
+        font-size: 0.82rem;
         letter-spacing: 0;
       }
       .blink {
         display: inline-block;
-        width: 8px;
-        height: 14px;
+        width: 9px;
+        height: 16px;
         background: var(--emerald);
         vertical-align: middle;
         animation: blink 1s step-end infinite;
@@ -479,7 +480,7 @@
         grid-template-columns: repeat(4, 1fr);
       }
       .stat {
-        padding: 40px 48px;
+        padding: 44px 48px;
         border-right: 1px solid var(--border);
         transition: background 0.3s;
       }
@@ -492,18 +493,18 @@
       .stat-num {
         font-family: var(--ff-display);
         font-weight: 900;
-        font-size: 2.8rem;
+        font-size: 3rem;
         line-height: 1;
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         background: var(--grad-text);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
       .stat-label {
-        font-size: 0.68rem;
+        font-size: 0.8rem;
         color: var(--text-dim);
-        letter-spacing: 0.12em;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
       }
 
@@ -519,8 +520,8 @@
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        font-size: 0.68rem;
-        letter-spacing: 0.18em;
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
         color: var(--emerald);
         margin-bottom: 20px;
@@ -540,7 +541,7 @@
         margin-bottom: 16px;
       }
       .s-sub {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         color: var(--text-mid);
         max-width: 520px;
         line-height: 1.75;
@@ -559,7 +560,7 @@
       }
       .cmd-card {
         background: var(--card);
-        padding: 28px 30px;
+        padding: 30px 32px;
         position: relative;
         overflow: hidden;
         transition: background 0.25s;
@@ -584,17 +585,17 @@
       }
       .cmd-tag {
         display: inline-block;
-        font-size: 0.65rem;
-        padding: 3px 8px;
+        font-size: 0.75rem;
+        padding: 4px 10px;
         border-radius: 4px;
         background: rgba(0, 245, 160, 0.08);
         border: 1px solid rgba(0, 245, 160, 0.15);
         color: var(--emerald);
-        letter-spacing: 0.06em;
+        letter-spacing: 0.05em;
         margin-bottom: 14px;
       }
       .cmd-name {
-        font-size: 0.92rem;
+        font-size: 1rem;
         color: var(--text);
         margin-bottom: 10px;
         font-weight: 500;
@@ -602,21 +603,21 @@
       .cmd-name code {
         background: rgba(56, 189, 248, 0.1);
         color: var(--sky);
-        padding: 2px 7px;
+        padding: 3px 8px;
         border-radius: 4px;
-        font-size: 0.85rem;
+        font-size: 0.95rem;
       }
       .cmd-desc {
-        font-size: 0.76rem;
+        font-size: 0.85rem;
         color: var(--text-mid);
-        line-height: 1.65;
+        line-height: 1.7;
         margin-bottom: 16px;
       }
       .cmd-ex {
-        font-size: 0.68rem;
+        font-size: 0.78rem;
         color: var(--text-dim);
         background: rgba(0, 0, 0, 0.3);
-        padding: 8px 12px;
+        padding: 9px 13px;
         border-radius: 6px;
         border-left: 2px solid rgba(0, 245, 160, 0.25);
         overflow-x: auto;
@@ -639,7 +640,7 @@
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: 10px;
-        padding: 22px 24px;
+        padding: 24px 26px;
         transition:
           border-color 0.3s,
           transform 0.3s;
@@ -655,37 +656,37 @@
         margin-bottom: 14px;
       }
       .sm-label {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         font-weight: 500;
         color: var(--text);
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 10px;
       }
       .sm-icon {
-        width: 28px;
-        height: 28px;
+        width: 32px;
+        height: 32px;
         border-radius: 6px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
       }
       .sm-weight {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         font-family: var(--ff-display);
         font-weight: 900;
       }
       .sm-track {
-        height: 6px;
+        height: 7px;
         background: var(--border);
-        border-radius: 3px;
+        border-radius: 4px;
         overflow: hidden;
-        margin-bottom: 10px;
+        margin-bottom: 12px;
       }
       .sm-fill {
         height: 100%;
-        border-radius: 3px;
+        border-radius: 4px;
         transform: scaleX(0);
         transform-origin: left;
         animation: growBar 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -696,17 +697,17 @@
         }
       }
       .sm-desc {
-        font-size: 0.7rem;
+        font-size: 0.82rem;
         color: var(--text-dim);
-        line-height: 1.55;
+        line-height: 1.6;
       }
 
       .thresholds {
         margin-top: 0;
       }
       .thresh-title {
-        font-size: 0.68rem;
-        letter-spacing: 0.12em;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
         text-transform: uppercase;
         color: var(--text-dim);
         margin-bottom: 16px;
@@ -714,17 +715,17 @@
       .thresh-row {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 14px 0;
+        gap: 14px;
+        padding: 16px 0;
         border-bottom: 1px solid var(--border);
-        font-size: 0.8rem;
+        font-size: 0.88rem;
       }
       .thresh-row:last-child {
         border-bottom: none;
       }
       .thresh-dot {
-        width: 10px;
-        height: 10px;
+        width: 11px;
+        height: 11px;
         border-radius: 50%;
         flex-shrink: 0;
       }
@@ -735,7 +736,7 @@
       .thresh-val {
         font-family: var(--ff-display);
         font-weight: 700;
-        font-size: 0.85rem;
+        font-size: 0.95rem;
       }
 
       /* INSTALL */
@@ -753,7 +754,7 @@
         box-shadow: 0 0 60px rgba(0, 245, 160, 0.04);
       }
       .install-header {
-        padding: 14px 20px;
+        padding: 15px 22px;
         border-bottom: 1px solid var(--border);
         display: flex;
         align-items: center;
@@ -761,17 +762,17 @@
         background: rgba(255, 255, 255, 0.02);
       }
       .install-header-left {
-        font-size: 0.68rem;
-        letter-spacing: 0.1em;
+        font-size: 0.78rem;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         color: var(--text-dim);
       }
       .copy-btn {
-        font-size: 0.65rem;
+        font-size: 0.76rem;
         color: var(--text-dim);
         background: none;
         border: 1px solid var(--border);
-        padding: 4px 10px;
+        padding: 5px 12px;
         border-radius: 5px;
         cursor: pointer;
         font-family: var(--ff-mono);
@@ -782,22 +783,22 @@
         color: var(--emerald);
       }
       .install-body {
-        padding: 24px 20px;
+        padding: 26px 22px;
         display: flex;
         flex-direction: column;
         gap: 4px;
       }
       .install-line {
         display: flex;
-        gap: 14px;
-        font-size: 0.8rem;
-        line-height: 2;
+        gap: 16px;
+        font-size: 0.88rem;
+        line-height: 2.2;
       }
       .il-num {
         color: var(--text-dim);
-        width: 18px;
+        width: 20px;
         flex-shrink: 0;
-        font-size: 0.7rem;
+        font-size: 0.8rem;
       }
       .il-cmd {
         color: #4ade80;
@@ -812,36 +813,36 @@
       .install-aside {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 24px;
       }
       .aside-item {
         display: flex;
-        gap: 14px;
+        gap: 16px;
         align-items: flex-start;
       }
       .aside-icon {
-        width: 36px;
-        height: 36px;
+        width: 40px;
+        height: 40px;
         background: rgba(255, 255, 255, 0.04);
         border: 1px solid var(--border);
         border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1rem;
+        font-size: 1.1rem;
         flex-shrink: 0;
       }
       .aside-text strong {
         display: block;
-        font-size: 0.78rem;
+        font-size: 0.88rem;
         color: var(--text);
         font-weight: 500;
-        margin-bottom: 3px;
+        margin-bottom: 4px;
       }
       .aside-text span {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
         color: var(--text-dim);
-        line-height: 1.55;
+        line-height: 1.6;
       }
 
       /* MARQUEE */
@@ -850,7 +851,7 @@
         z-index: 1;
         border-top: 1px solid var(--border);
         border-bottom: 1px solid var(--border);
-        padding: 48px 0;
+        padding: 52px 0;
         overflow: hidden;
       }
       .marquee-track {
@@ -873,11 +874,11 @@
       .role-chip {
         display: inline-flex;
         align-items: center;
-        gap: 8px;
-        padding: 8px 18px;
+        gap: 9px;
+        padding: 10px 20px;
         border-radius: 20px;
         border: 1px solid var(--border);
-        font-size: 0.72rem;
+        font-size: 0.82rem;
         color: var(--text-mid);
         background: var(--card);
         white-space: nowrap;
@@ -889,8 +890,8 @@
         color: var(--text);
       }
       .role-chip span {
-        width: 6px;
-        height: 6px;
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
         background: var(--grad2);
         flex-shrink: 0;
@@ -902,7 +903,7 @@
         z-index: 1;
         max-width: 1280px;
         margin: 0 auto;
-        padding: 48px;
+        padding: 52px 48px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -913,7 +914,7 @@
       .footer-brand {
         font-family: var(--ff-display);
         font-weight: 900;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         letter-spacing: -0.03em;
         background: var(--grad-text);
         -webkit-background-clip: text;
@@ -921,13 +922,65 @@
         background-clip: text;
       }
       .footer-meta {
-        font-size: 0.72rem;
+        font-size: 0.8rem;
         color: var(--text-dim);
         margin-top: 6px;
       }
       .footer-links {
         display: flex;
         gap: 10px;
+      }
+
+      /* Supported formats block */
+      .formats-card {
+        margin-top: 32px;
+        padding: 28px 30px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+      .formats-title {
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-dim);
+        margin-bottom: 18px;
+      }
+      .format-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 0.86rem;
+        margin-bottom: 14px;
+      }
+      .format-row:last-child {
+        margin-bottom: 0;
+      }
+      .format-badge {
+        width: 52px;
+        text-align: center;
+        padding: 4px 0;
+        border-radius: 5px;
+        font-size: 0.75rem;
+        flex-shrink: 0;
+      }
+      .format-badge-pdf {
+        background: rgba(251, 191, 36, 0.1);
+        border: 1px solid rgba(251, 191, 36, 0.2);
+        color: var(--amber);
+      }
+      .format-badge-docx {
+        background: rgba(56, 189, 248, 0.1);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        color: var(--sky);
+      }
+      .format-badge-txt {
+        background: rgba(0, 245, 160, 0.1);
+        border: 1px solid rgba(0, 245, 160, 0.2);
+        color: var(--emerald);
+      }
+      .format-desc {
+        color: var(--text-mid);
       }
 
       /* REVEAL */
@@ -1012,13 +1065,13 @@
           font-size: 2.6rem;
         }
         .hero-desc {
-          font-size: 0.82rem;
+          font-size: 0.95rem;
         }
         .stat {
           padding: 28px 24px;
         }
         .stat-num {
-          font-size: 2.2rem;
+          font-size: 2.4rem;
         }
         .section {
           padding: 70px 20px;
@@ -1041,13 +1094,6 @@
         }
         .btn {
           justify-content: center;
-        }
-        .stat:nth-child(2) {
-          border-right: none;
-        }
-        .stat:nth-child(3) {
-          border-top: 1px solid var(--border);
-          border-right: 1px solid var(--border);
         }
       }
 
@@ -1082,7 +1128,7 @@
           target="_blank"
           class="nav-link"
         >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
             />
@@ -1094,14 +1140,14 @@
           target="_blank"
           class="nav-link"
         >
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M12.006 0C8.61 0 8.403.16 8.403 1.79v1.577h3.684V4H5.61C3.983 4 2.587 5.02 2.108 7.144c-.55 2.454-.574 3.985 0 6.55.426 1.908 1.44 3.306 3.068 3.306H6.9v-2.6c0-1.857 1.604-3.494 3.485-3.494h3.682c1.55 0 2.79-1.278 2.79-2.836V1.79C16.857.712 15.678 0 12.006 0zM10.23 1.116c.579 0 1.048.47 1.048 1.05a1.048 1.048 0 1 1-2.096 0c0-.58.469-1.05 1.048-1.05zM7.716 20.21v1.576c0 1.63.208 1.79 3.603 1.79 3.672 0 4.851-.712 4.851-1.79v-1.577h-1.726v.735c0 .579-.47 1.05-1.05 1.05H9.816a1.048 1.048 0 0 1-1.048-1.05v-.735H7.716zm7.07-14.8a1.047 1.047 0 1 1 0 2.095 1.047 1.047 0 0 1 0-2.095z"
             />
           </svg>
           PyPI
         </a>
-        <div class="nav-version">v0.1.2</div>
+        <div class="nav-version">v0.1.4</div>
       </div>
     </nav>
 
@@ -1127,7 +1173,7 @@
             target="_blank"
             class="btn btn-grad"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M12.006 0C8.61 0 8.403.16 8.403 1.79v1.577h3.684V4H5.61C3.983 4 2.587 5.02 2.108 7.144c-.55 2.454-.574 3.985 0 6.55.426 1.908 1.44 3.306 3.068 3.306H6.9v-2.6c0-1.857 1.604-3.494 3.485-3.494h3.682c1.55 0 2.79-1.278 2.79-2.836V1.79C16.857.712 15.678 0 12.006 0zM10.23 1.116c.579 0 1.048.47 1.048 1.05a1.048 1.048 0 1 1-2.096 0c0-.58.469-1.05 1.048-1.05zM7.716 20.21v1.576c0 1.63.208 1.79 3.603 1.79 3.672 0 4.851-.712 4.851-1.79v-1.577h-1.726v.735c0 .579-.47 1.05-1.05 1.05H9.816a1.048 1.048 0 0 1-1.048-1.05v-.735H7.716zm7.07-14.8a1.047 1.047 0 1 1 0 2.095 1.047 1.047 0 0 1 0-2.095z"
               />
@@ -1139,7 +1185,7 @@
             target="_blank"
             class="btn btn-outline"
           >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
               <path
                 d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
               />
@@ -1164,33 +1210,33 @@
               ><span class="t-c">cvz analyze resume.pdf --role backend</span>
             </div>
             <div class="t-d">╭──────────────────────────────────╮</div>
-            <div class="t-d">│ CVZ — ATS Resume Analyzer v0.1.2 │</div>
+            <div class="t-d">│ CVZ — ATS Resume Analyzer v0.1.4 │</div>
             <div class="t-d">╰──────────────────────────────────╯</div>
             <br />
             <div class="t-row">
-              <span class="t-m" style="width: 70px">Keyword</span
-              ><span class="t-bar t-g">████████████████</span
-              ><span class="t-bar t-d">░░░░</span
-              ><span class="t-g" style="margin-left: 6px">78.4%</span>
+              <span class="t-m" style="width: 76px">Keyword</span>
+              <span class="t-bar t-g">████████████████</span
+              ><span class="t-bar t-d">░░░░</span>
+              <span class="t-g" style="margin-left: 6px">78.4%</span>
             </div>
             <div class="t-row">
-              <span class="t-m" style="width: 70px">Semantic</span
-              ><span class="t-bar t-y">█████████████</span
-              ><span class="t-bar t-d">░░░░░░░</span
-              ><span class="t-y" style="margin-left: 6px">64.1%</span>
+              <span class="t-m" style="width: 76px">Semantic</span>
+              <span class="t-bar t-y">█████████████</span
+              ><span class="t-bar t-d">░░░░░░░</span>
+              <span class="t-y" style="margin-left: 6px">64.1%</span>
             </div>
             <div class="t-row">
-              <span class="t-m" style="width: 70px">Structure</span
-              ><span class="t-bar t-g">███████████████</span
-              ><span class="t-bar t-d">░░░░░</span
-              ><span class="t-g" style="margin-left: 6px">81.0%</span>
+              <span class="t-m" style="width: 76px">Structure</span>
+              <span class="t-bar t-g">███████████████</span
+              ><span class="t-bar t-d">░░░░░</span>
+              <span class="t-g" style="margin-left: 6px">81.0%</span>
             </div>
             <hr class="t-rule" />
             <div class="t-row">
-              <span class="t-m" style="width: 70px">Final</span
-              ><span class="t-bar t-e">████████████████</span
-              ><span class="t-bar t-d">░░░░</span
-              ><span class="t-e" style="margin-left: 6px"
+              <span class="t-m" style="width: 76px">Final</span>
+              <span class="t-bar t-e">████████████████</span
+              ><span class="t-bar t-d">░░░░</span>
+              <span class="t-e" style="margin-left: 6px"
                 ><strong>74.9%</strong></span
               >
             </div>
@@ -1199,9 +1245,7 @@
               ⚠️ Decent match — a few tweaks could boost your score.
             </div>
             <br />
-            <div class="t-m" style="font-size: 0.72rem">
-              Missing Skills (top 3)
-            </div>
+            <div class="t-m">Missing Skills (top 3)</div>
             <div class="t-r">✗ <span class="t-d">kubernetes</span></div>
             <div class="t-r">✗ <span class="t-d">redis</span></div>
             <div class="t-r">✗ <span class="t-d">grpc</span></div>
@@ -1379,9 +1423,9 @@
               ></div>
             </div>
             <div class="sm-desc">
-              spaCy cosine similarity between resume and role keywords. Optional
-              — gracefully disabled if model isn't installed. Gated to prevent
-              score inflation.
+              spaCy cosine similarity between resume and role keywords.
+              Auto-downloaded on first run. Gated to prevent score inflation on
+              weak matches.
             </div>
           </div>
           <div class="score-meter">
@@ -1420,117 +1464,40 @@
             <div class="thresh-title">Score Thresholds</div>
             <div class="thresh-row">
               <div class="thresh-dot" style="background: #4ade80"></div>
-              <span class="thresh-label">Great match — well aligned</span
-              ><span class="thresh-val" style="color: #4ade80">≥ 75%</span>
+              <span class="thresh-label">Great match — well aligned</span>
+              <span class="thresh-val" style="color: #4ade80">≥ 75%</span>
             </div>
             <div class="thresh-row">
               <div class="thresh-dot" style="background: var(--amber)"></div>
-              <span class="thresh-label">Decent match — improvable</span
-              ><span class="thresh-val" style="color: var(--amber)"
-                >50–74%</span
-              >
+              <span class="thresh-label">Decent match — improvable</span>
+              <span class="thresh-val" style="color: var(--amber)">50–74%</span>
             </div>
             <div class="thresh-row">
               <div class="thresh-dot" style="background: var(--rose)"></div>
-              <span class="thresh-label">Low match — needs work</span
-              ><span class="thresh-val" style="color: var(--rose)"
+              <span class="thresh-label">Low match — needs work</span>
+              <span class="thresh-val" style="color: var(--rose)"
                 >&lt; 50%</span
               >
             </div>
           </div>
-          <div
-            style="
-              margin-top: 32px;
-              padding: 28px;
-              background: var(--card);
-              border: 1px solid var(--border);
-              border-radius: 12px;
-            "
-          >
-            <div
-              style="
-                font-size: 0.68rem;
-                letter-spacing: 0.12em;
-                text-transform: uppercase;
-                color: var(--text-dim);
-                margin-bottom: 16px;
-              "
-            >
-              Supported Formats
+
+          <div class="formats-card">
+            <div class="formats-title">Supported Formats</div>
+            <div class="format-row">
+              <span class="format-badge format-badge-pdf">.pdf</span>
+              <span class="format-desc"
+                >pdfplumber — text extraction per page</span
+              >
             </div>
-            <div style="display: flex; flex-direction: column; gap: 12px">
-              <div
-                style="
-                  display: flex;
-                  align-items: center;
-                  gap: 12px;
-                  font-size: 0.78rem;
-                "
+            <div class="format-row">
+              <span class="format-badge format-badge-docx">.docx</span>
+              <span class="format-desc">python-docx — paragraphs + tables</span>
+            </div>
+            <div class="format-row">
+              <span class="format-badge format-badge-txt">.txt</span>
+              <span class="format-desc"
+                >built-in — UTF-8 with error handling</span
               >
-                <span
-                  style="
-                    width: 48px;
-                    text-align: center;
-                    background: rgba(251, 191, 36, 0.1);
-                    border: 1px solid rgba(251, 191, 36, 0.2);
-                    color: var(--amber);
-                    padding: 3px 8px;
-                    border-radius: 5px;
-                    font-size: 0.65rem;
-                  "
-                  >.pdf</span
-                ><span style="color: var(--text-mid)"
-                  >pdfplumber — text extraction per page</span
-                >
-              </div>
-              <div
-                style="
-                  display: flex;
-                  align-items: center;
-                  gap: 12px;
-                  font-size: 0.78rem;
-                "
-              >
-                <span
-                  style="
-                    width: 48px;
-                    text-align: center;
-                    background: rgba(56, 189, 248, 0.1);
-                    border: 1px solid rgba(56, 189, 248, 0.2);
-                    color: var(--sky);
-                    padding: 3px 8px;
-                    border-radius: 5px;
-                    font-size: 0.65rem;
-                  "
-                  >.docx</span
-                ><span style="color: var(--text-mid)"
-                  >python-docx — paragraphs + tables</span
-                >
-              </div>
-              <div
-                style="
-                  display: flex;
-                  align-items: center;
-                  gap: 12px;
-                  font-size: 0.78rem;
-                "
-              >
-                <span
-                  style="
-                    width: 48px;
-                    text-align: center;
-                    background: rgba(0, 245, 160, 0.1);
-                    border: 1px solid rgba(0, 245, 160, 0.2);
-                    color: var(--emerald);
-                    padding: 3px 8px;
-                    border-radius: 5px;
-                    font-size: 0.65rem;
-                  "
-                  >.txt</span
-                ><span style="color: var(--text-mid)"
-                  >built-in — UTF-8 with error handling</span
-                >
-              </div>
             </div>
           </div>
         </div>
@@ -1555,26 +1522,24 @@
           </div>
           <div class="install-body">
             <div class="install-line">
-              <span class="il-num">1</span
-              ><span
+              <span class="il-num">1</span>
+              <span
                 ><span class="il-cmd">pip install</span>
                 <span class="il-arg">cvz</span></span
               >
             </div>
             <div class="install-line">
-              <span class="il-num">2</span
-              ><span
-                ><span class="il-cmd">python -m spacy download</span
-                ><span class="il-arg"> en_core_web_md</span
-                ><span class="il-comment"> # optional</span></span
-              >
-            </div>
-            <div class="install-line">
-              <span class="il-num">3</span
-              ><span
+              <span class="il-num">2</span>
+              <span
                 ><span class="il-cmd">cvz analyze</span>
                 <span class="il-arg">resume.pdf</span>
                 <span style="color: var(--text-dim)">--role backend</span></span
+              >
+            </div>
+            <div class="install-line" style="opacity: 0.55">
+              <span class="il-num">#</span>
+              <span class="il-comment"
+                >spaCy model downloads automatically on first run</span
               >
             </div>
           </div>
@@ -1583,8 +1548,8 @@
           <div class="aside-item">
             <div class="aside-icon">🐍</div>
             <div class="aside-text">
-              <strong>Python 3.9+</strong
-              ><span
+              <strong>Python 3.9+</strong>
+              <span
                 >Compatible with all modern Python versions. Install via pip
                 from PyPI.</span
               >
@@ -1593,8 +1558,8 @@
           <div class="aside-item">
             <div class="aside-icon">📡</div>
             <div class="aside-text">
-              <strong>Works fully offline</strong
-              ><span
+              <strong>Works fully offline</strong>
+              <span
                 >No API calls, no cloud. Everything runs locally on your
                 machine.</span
               >
@@ -1603,10 +1568,10 @@
           <div class="aside-item">
             <div class="aside-icon">🧩</div>
             <div class="aside-text">
-              <strong>Extend with custom roles</strong
-              ><span
+              <strong>Extend with custom roles</strong>
+              <span
                 >Edit
-                <code style="color: var(--sky); font-size: 0.7rem"
+                <code style="color: var(--sky); font-size: 0.82rem"
                   >roles.json</code
                 >
                 to add your own keyword sets for any role.</span
@@ -1616,10 +1581,10 @@
           <div class="aside-item">
             <div class="aside-icon">📦</div>
             <div class="aside-text">
-              <strong>Export everything as JSON</strong
-              ><span
+              <strong>Export everything as JSON</strong>
+              <span
                 >All commands support
-                <code style="color: var(--sky); font-size: 0.7rem"
+                <code style="color: var(--sky); font-size: 0.82rem"
                   >--export</code
                 >
                 for downstream processing.</span
@@ -1635,7 +1600,7 @@
       <div>
         <div class="footer-brand">cvz</div>
         <div class="footer-meta">
-          Built by Anik Chand · MIT License · v0.1.2
+          Built by Anik Chand · MIT License · v0.1.4
         </div>
       </div>
       <div class="footer-links">
@@ -1644,7 +1609,7 @@
           target="_blank"
           class="nav-link"
         >
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"
             />
@@ -1656,7 +1621,7 @@
           target="_blank"
           class="nav-link"
         >
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
             <path
               d="M12.006 0C8.61 0 8.403.16 8.403 1.79v1.577h3.684V4H5.61C3.983 4 2.587 5.02 2.108 7.144c-.55 2.454-.574 3.985 0 6.55.426 1.908 1.44 3.306 3.068 3.306H6.9v-2.6c0-1.857 1.604-3.494 3.485-3.494h3.682c1.55 0 2.79-1.278 2.79-2.836V1.79C16.857.712 15.678 0 12.006 0zM10.23 1.116c.579 0 1.048.47 1.048 1.05a1.048 1.048 0 1 1-2.096 0c0-.58.469-1.05 1.048-1.05zM7.716 20.21v1.576c0 1.63.208 1.79 3.603 1.79 3.672 0 4.851-.712 4.851-1.79v-1.577h-1.726v.735c0 .579-.47 1.05-1.05 1.05H9.816a1.048 1.048 0 0 1-1.048-1.05v-.735H7.716zm7.07-14.8a1.047 1.047 0 1 1 0 2.095 1.047 1.047 0 0 1 0-2.095z"
             />
@@ -1667,7 +1632,6 @@
     </footer>
 
     <script>
-      // Roles marquee
       const roles = [
         "backend",
         "frontend",
@@ -1698,7 +1662,6 @@
         track.appendChild(c);
       });
 
-      // Scroll reveal
       const obs = new IntersectionObserver(
         (e) =>
           e.forEach((x) => {
@@ -1708,12 +1671,9 @@
       );
       document.querySelectorAll(".reveal").forEach((el) => obs.observe(el));
 
-      // Copy button
       document.getElementById("copyBtn").addEventListener("click", function () {
         navigator.clipboard
-          .writeText(
-            "pip install cvz\npython -m spacy download en_core_web_md\ncvz analyze resume.pdf --role backend",
-          )
+          .writeText("pip install cvz\ncvz analyze resume.pdf --role backend")
           .then(() => {
             this.textContent = "copied ✓";
             this.style.cssText +=
