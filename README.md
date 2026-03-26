@@ -4,6 +4,8 @@ A fast command-line tool that scores resumes against job roles using keyword mat
 
 ---
 
+![workflow](./images/workflow.png)
+
 ## Installation
 
 ```bash
