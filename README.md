@@ -1,10 +1,35 @@
-# cvz — ATS Resume Analyzer CLI
+<div align="center">
 
-A fast command-line tool that scores resumes against job roles using keyword matching, semantic similarity, and structural analysis. Supports PDF, DOCX, and TXT files.
+# ⚡ cvz — ATS Resume Analyzer
+
+**Stop guessing. Start scoring.**
+
+A blazing-fast CLI tool that tells you _exactly_ how well your resume matches a job — before a recruiter's ATS does.
+
+[![PyPI version](https://img.shields.io/pypi/v/cvz?color=brightgreen&label=pypi)](https://pypi.org/project/cvz/)
+[![Python](https://img.shields.io/badge/python-3.9%2B-blue)](https://pypi.org/project/cvz/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
+**[🌐 Live Demo](https://cvz-cli.vercel.app/) · [📦 PyPI](https://pypi.org/project/cvz/) · [🐛 Report Bug](https://github.com/)**
+
+</div>
 
 ---
 
 ![workflow](./images/workflow.png)
+
+---
+
+## Why cvz?
+
+Most resumes get rejected before a human ever reads them — filtered out by ATS (Applicant Tracking Systems) that scan for keywords and structure. `cvz` puts that power in your hands:
+
+- 🔍 **Keyword matching** — see exactly which role keywords you're hitting (and missing)
+- 🧠 **Semantic similarity** — goes beyond exact matches using NLP
+- 🏗️ **Structure scoring** — checks for the sections recruiters expect
+- 🚀 **Works instantly** — no cloud, no signup, no waiting
+
+---
 
 ## Installation
 
@@ -12,7 +37,7 @@ A fast command-line tool that scores resumes against job roles using keyword mat
 pip install cvz
 ```
 
-Or install from source:
+Or build from source:
 
 ```bash
 git clone <repo>
@@ -22,70 +47,72 @@ pip install -e .
 
 > Requires Python 3.9+
 
-Download the spaCy model for semantic scoring (recommended):
+For better semantic scoring, grab the spaCy model:
 
 ```bash
 python -m spacy download en_core_web_md
 ```
 
-> If not installed, semantic scoring is automatically skipped with a warning — all other features work normally.
+> Without it? No problem — `cvz` gracefully skips semantic scoring and keeps everything else running.
 
 ---
 
-## Usage
-
-### Analyze a resume against a role
+## Quick Start
 
 ```bash
+# Analyze against a specific role
 cvz analyze resume.pdf --role backend
-```
 
-### Auto-detect the best matching role
-
-```bash
+# Let cvz figure out the best role for you
 cvz analyze resume.pdf
-```
 
-### Analyze against a custom job description
-
-```bash
+# Analyze against a raw job description
 cvz analyze resume.pdf --jd "python django rest api postgresql"
 ```
 
-### Export the report to JSON
+---
+
+## Commands
+
+### `analyze` — Score your resume
 
 ```bash
+cvz analyze resume.pdf --role backend
 cvz analyze resume.pdf --role devops --export report.json
 ```
 
-### Suggest the best-fit roles for a resume
+### `suggest-role` — Find your best-fit roles
+
+Not sure which roles to target? cvz will tell you.
 
 ```bash
 cvz suggest-role resume.pdf
 cvz suggest-role resume.pdf --top 10
 ```
 
-### Gap analysis — see strengths and missing skills
+### `gap` — Discover what's missing
+
+See your strengths and the skills you need to add.
 
 ```bash
 cvz gap resume.pdf --role machine_learning
 cvz gap resume.pdf --role backend --export gap.json
 ```
 
-### Compare multiple resumes
+### `compare` — Rank multiple resume versions
 
 ```bash
 cvz compare r1.pdf r2.pdf r3.pdf
 cvz compare r1.pdf r2.pdf --role frontend --export compare.json
 ```
 
-### List all supported roles
+### `roles` — Browse supported roles
 
 ```bash
 cvz roles
 ```
 
-### Show version
+### `--version`
 
 ```bash
 cvz --version
@@ -93,29 +120,29 @@ cvz --version
 
 ---
 
-## Scoring
+## How Scoring Works
 
-Each resume is scored across three dimensions:
+Each resume is evaluated across three dimensions:
 
-| Metric    | Weight | Description                                              |
-| --------- | ------ | -------------------------------------------------------- |
-| Keyword   | 50%    | Matches core (70%) and secondary (30%) role keywords     |
-| Semantic  | 30%    | spaCy cosine similarity between resume and role keywords |
-| Structure | 20%    | Presence of standard sections + resume length            |
+| Metric       | Weight | What it checks                                  |
+| ------------ | ------ | ----------------------------------------------- |
+| 🔑 Keyword   | 50%    | Core (70%) + secondary (30%) role keywords      |
+| 🧠 Semantic  | 30%    | spaCy cosine similarity against role vocabulary |
+| 🏗️ Structure | 20%    | Standard sections present + appropriate length  |
 
-Score thresholds:
+**Score thresholds:**
 
-| Score  | Rating       |
-| ------ | ------------ |
-| >= 75% | Great match  |
-| 50-74% | Decent match |
-| < 50%  | Low match    |
+| Score  | Rating          |
+| ------ | --------------- |
+| ≥ 75%  | ✅ Great match  |
+| 50–74% | 🟡 Decent match |
+| < 50%  | 🔴 Low match    |
 
 ---
 
 ## Supported Roles
 
-| Role               | Role                |
+|                    |                     |
 | ------------------ | ------------------- |
 | `backend`          | `frontend`          |
 | `full_stack`       | `software_engineer` |
@@ -127,30 +154,17 @@ Score thresholds:
 | `product_manager`  | `ui_ux_designer`    |
 | `blockchain`       | `embedded_systems`  |
 
-Run `cvz roles` for the full list. Role keyword sets are defined in `src/cvscan/data/roles.json` and can be extended.
+Run `cvz roles` for the full list. Role keyword sets live in `src/cvscan/data/roles.json` — fully extensible.
 
 ---
 
 ## Supported File Formats
 
-| Format  | Parser                                    |
-| ------- | ----------------------------------------- |
-| `.pdf`  | `pdfplumber`                              |
-| `.docx` | `python-docx` (includes table extraction) |
-| `.txt`  | built-in                                  |
-
----
-
-## Dependencies
-
-```
-typer
-rich
-pdfplumber
-python-docx
-spacy
-scikit-learn
-```
+| Format  | Parser                           |
+| ------- | -------------------------------- |
+| `.pdf`  | `pdfplumber`                     |
+| `.docx` | `python-docx` (including tables) |
+| `.txt`  | built-in                         |
 
 ---
 
@@ -160,26 +174,42 @@ scikit-learn
 cvscan/
 ├── src/
 │   └── cvscan/
-│       ├── main.py                 # CLI commands (Typer)
+│       ├── main.py                 # CLI entry (Typer)
 │       ├── data/
 │       │   └── roles.json          # Role keyword definitions
 │       ├── engines/
-│       │   ├── keyword_engine.py   # Keyword-based scoring
-│       │   ├── spacy_engine.py     # Semantic similarity scoring
-│       │   └── structure_engine.py # Resume structure scoring
+│       │   ├── keyword_engine.py   # Keyword scoring
+│       │   ├── spacy_engine.py     # Semantic similarity
+│       │   └── structure_engine.py # Resume structure
 │       ├── parser/
-│       │   ├── pdf_parser.py       # PDF text extraction
-│       │   └── docx_parser.py      # DOCX text extraction (incl. tables)
+│       │   ├── pdf_parser.py       # PDF extraction
+│       │   └── docx_parser.py      # DOCX extraction + tables
 │       └── utils/
-│           ├── loader.py           # File + role data loading
+│           ├── loader.py           # File + role loading
 │           ├── cleaner.py          # Text normalisation
-│           └── scorer.py           # Shared scoring helpers
+│           └── scorer.py           # Shared scoring logic
 ├── pyproject.toml
 └── requirements.txt
 ```
 
 ---
 
+## Dependencies
+
+```
+typer · rich · pdfplumber · python-docx · spacy · scikit-learn
+```
+
+---
+
 ## Author
 
-Anik Chand
+Built by **Anik Chand**
+
+---
+
+<div align="center">
+
+If `cvz` helped you land an interview, consider leaving a ⭐
+
+</div>
